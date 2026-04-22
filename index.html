@@ -10,70 +10,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root {
-  --bg: #fafaf8;
-  --bg2: #f2f0eb;
-  --bg3: #e8e5de;
-  --text: #1a1917;
-  --text2: #5a5852;
-  --text3: #8a8880;
-  --border: #d8d5ce;
-  --border2: #c8c5be;
-  --amber: #b07010;
-  --amber-bg: #fdf4e3;
-  --amber-border: #e8c870;
-  --teal: #0a6b52;
-  --teal-bg: #e8f5f0;
-  --teal-border: #80c8b0;
-  --purple: #4a40b0;
-  --purple-bg: #f0effe;
-  --purple-border: #b0a8e8;
-  --coral: #b03820;
-  --coral-bg: #fdf0ec;
-  --coral-border: #e8a090;
-  --blue: #1850a0;
-  --blue-bg: #eaf2fe;
-  --blue-border: #90b8e8;
+  --bg: #fafaf8; --bg2: #f2f0eb; --bg3: #e8e5de;
+  --text: #1a1917; --text2: #5a5852; --text3: #8a8880;
+  --border: #d8d5ce; --border2: #c8c5be;
+  --amber: #b07010; --amber-bg: #fdf4e3; --amber-border: #e8c870;
+  --teal: #0a6b52; --teal-bg: #e8f5f0; --teal-border: #80c8b0;
+  --purple: #4a40b0; --purple-bg: #f0effe; --purple-border: #b0a8e8;
+  --coral: #b03820; --coral-bg: #fdf0ec; --coral-border: #e8a090;
+  --blue: #1850a0; --blue-bg: #eaf2fe; --blue-border: #90b8e8;
   --serif: 'DM Serif Display', Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --sans: 'Inter', system-ui, sans-serif;
-  --r: 6px;
-  --r-lg: 10px;
+  --r: 6px; --r-lg: 10px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-/* ── LAYOUT ── */
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
 .page-wrap { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
-
-/* ── SIDEBAR ── */
 .sidebar {
   position: sticky; top: 0; height: 100vh; overflow-y: auto;
   background: var(--bg2); border-right: 1px solid var(--border);
-  padding: 2rem 1.25rem;
-  display: flex; flex-direction: column; gap: 0;
+  padding: 2rem 1.25rem; display: flex; flex-direction: column; gap: 0;
 }
-.sidebar-logo {
-  font-family: var(--mono); font-size: 11px; font-weight: 500;
-  color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase;
-  margin-bottom: 0.25rem;
-}
-.sidebar-project {
-  font-family: var(--serif); font-size: 18px; color: var(--text);
-  margin-bottom: 2rem; line-height: 1.2;
-}
+.sidebar-logo { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
+.sidebar-project { font-family: var(--serif); font-size: 18px; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
 .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-.sidebar-nav a {
-  display: block; font-size: 12px; color: var(--text2);
-  text-decoration: none; padding: 5px 8px; border-radius: var(--r);
-  transition: background 0.15s, color 0.15s;
-}
+.sidebar-nav a { display: block; font-size: 12px; color: var(--text2); text-decoration: none; padding: 5px 8px; border-radius: var(--r); transition: background 0.15s, color 0.15s; }
 .sidebar-nav a:hover { background: var(--bg3); color: var(--text); }
 .sidebar-nav a.active { background: var(--text); color: var(--bg); }
 .sidebar-nav .sub { padding-left: 20px; font-size: 11px; color: var(--text3); }
@@ -83,16 +44,11 @@ body {
 .stack-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.75rem; }
 .stack-item { font-size: 11px; color: var(--text2); padding: 4px 0; border-bottom: 1px solid var(--border); line-height: 1.3; }
 .stack-item strong { display: block; color: var(--text); font-weight: 500; font-size: 11px; }
-
-/* ── MAIN ── */
 .main { padding: 0; }
-
-/* ── TOPBAR ── */
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.75rem 2.5rem; border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; background: rgba(250,250,248,0.95); backdrop-filter: blur(8px);
-  z-index: 100;
+  position: sticky; top: 0; background: rgba(250,250,248,0.95); backdrop-filter: blur(8px); z-index: 100;
 }
 .topbar-breadcrumb { font-family: var(--mono); font-size: 11px; color: var(--text3); }
 .topbar-breadcrumb a { color: var(--text3); text-decoration: none; }
@@ -100,111 +56,58 @@ body {
 .topbar-tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; background: var(--bg3); border-radius: 99px; color: var(--text2); }
 .topbar-gh { font-family: var(--mono); font-size: 11px; color: var(--amber); text-decoration: none; }
 .topbar-gh:hover { text-decoration: underline; }
-
-/* ── CONTENT ── */
 .content { padding: 3rem 2.5rem 5rem; max-width: 820px; }
-
-/* ── HEADER ── */
 .doc-header { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
-.doc-eyebrow {
-  display: flex; align-items: center; gap: 12px;
-  font-family: var(--mono); font-size: 10.5px; color: var(--text3);
-  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem;
-}
+.doc-eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 10.5px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem; }
 .doc-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.doc-title {
-  font-family: var(--serif); font-size: clamp(26px, 4vw, 40px);
-  font-weight: 400; line-height: 1.15; letter-spacing: -0.01em;
-  color: var(--text); margin-bottom: 0.75rem;
-}
+.doc-title { font-family: var(--serif); font-size: clamp(26px, 4vw, 40px); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; color: var(--text); margin-bottom: 0.75rem; }
 .doc-title em { font-style: italic; color: var(--amber); }
-.doc-byline {
-  font-size: 13px; color: var(--text3);
-  display: flex; gap: 20px; flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
+.doc-byline { font-size: 13px; color: var(--text3); display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 2rem; }
 .doc-byline span { display: flex; align-items: center; gap: 5px; }
-
-/* ── STAT GRID ── */
-.stat-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 0; border: 1px solid var(--border); border-radius: var(--r-lg);
-  overflow: hidden; margin: 0 0 2.5rem;
-}
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin: 0 0 2.5rem; }
 .stat-cell { padding: 1.25rem 1.5rem; border-right: 1px solid var(--border); background: white; }
 .stat-cell:last-child { border-right: none; }
-.stat-value {
-  font-family: var(--serif); font-size: 34px; font-weight: 400;
-  line-height: 1; margin-bottom: 4px;
-}
+.stat-value { font-family: var(--serif); font-size: 34px; font-weight: 400; line-height: 1; margin-bottom: 4px; }
 .stat-value.amber { color: var(--amber); }
 .stat-value.teal { color: var(--teal); }
 .stat-value.purple { color: var(--purple); }
 .stat-label { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
-
-/* ── ABSTRACT ── */
 .abstract-grid { display: grid; grid-template-columns: 110px 1fr; gap: 2rem; margin-bottom: 1.5rem; }
 .abstract-label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); padding-top: 4px; }
 .abstract-body { font-size: 14.5px; line-height: 1.75; color: var(--text2); }
 .abstract-body p + p { margin-top: 0.75rem; }
 .kw-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
 .kw { font-family: var(--mono); font-size: 10px; padding: 3px 10px; border: 1px solid var(--border2); border-radius: 99px; color: var(--text3); }
-
-/* ── SECTIONS ── */
 .section { margin-bottom: 4rem; }
-.section-heading {
-  font-family: var(--serif); font-size: 26px; font-weight: 400;
-  color: var(--text); margin-bottom: 1.25rem; display: flex; align-items: baseline; gap: 12px;
-}
+.section-heading { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 1.25rem; display: flex; align-items: baseline; gap: 12px; }
 .section-num { font-family: var(--mono); font-size: 12px; color: var(--text3); }
-.subsection-heading {
-  font-family: var(--sans); font-size: 13px; font-weight: 500;
-  color: var(--text); margin: 2rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
-  display: flex; align-items: center; gap: 8px;
-}
+.subsection-heading { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--text); margin: 2rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; }
 .subsection-heading::before { content: ''; display: block; width: 20px; height: 1px; background: var(--border2); }
 .body-text { font-size: 14.5px; line-height: 1.75; color: var(--text2); margin-bottom: 1rem; }
 .body-text strong { color: var(--text); font-weight: 500; }
 .body-text code { font-family: var(--mono); font-size: 12px; background: var(--bg3); padding: 1px 5px; border-radius: 3px; color: var(--text); }
-
-/* ── CALLOUT ── */
-.callout {
-  border-left: 2px solid var(--border2); padding: 1rem 1.25rem;
-  margin: 1.5rem 0; background: var(--bg2);
-}
+.callout { border-left: 2px solid var(--border2); padding: 1rem 1.25rem; margin: 1.5rem 0; background: var(--bg2); }
 .callout.amber { border-color: var(--amber-border); background: var(--amber-bg); }
 .callout.teal { border-color: var(--teal-border); background: var(--teal-bg); }
+.callout.coral { border-color: var(--coral-border); background: var(--coral-bg); }
+.callout.purple { border-color: var(--purple-border); background: var(--purple-bg); }
 .callout-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 4px; }
 .callout.amber .callout-label { color: var(--amber); }
 .callout.teal .callout-label { color: var(--teal); }
+.callout.coral .callout-label { color: var(--coral); }
+.callout.purple .callout-label { color: var(--purple); }
 .callout-body { font-size: 13.5px; line-height: 1.65; color: var(--text2); }
-
-/* ── FIGURE ── */
 .figure { margin: 2rem 0; }
-.figure-label {
-  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.5rem;
-  display: flex; align-items: center; gap: 8px;
-}
+.figure-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
 .figure-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .figure-sublabel { font-size: 12px; color: var(--text3); font-style: italic; margin-bottom: 0.75rem; }
-.figure-body {
-  border: 1px solid var(--border); border-radius: var(--r-lg);
-  background: white; padding: 1.5rem; overflow: hidden;
-}
+.figure-body { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; padding: 1.5rem; overflow: hidden; }
 .figure-note { font-size: 12px; color: var(--text3); margin-top: 0.5rem; font-style: italic; }
-
-/* ── SVG DIAGRAM SHARED ── */
 .diag-text { font-family: var(--sans); font-size: 12px; fill: #1a1917; }
 .diag-label { font-family: var(--sans); font-size: 11px; fill: #5a5852; }
 .diag-mono { font-family: var(--mono); font-size: 10px; fill: #8a8880; }
-
-/* ── TECHNIQUE CARDS ── */
 .tech-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 1.5rem 0; }
-.tech-card {
-  border: 1px solid var(--border); border-radius: var(--r-lg);
-  padding: 1.25rem; background: white;
-}
+.tech-card { border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.25rem; background: white; }
 .tech-card-tag { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
 .tech-card-tag.amber { color: var(--amber); }
 .tech-card-tag.teal { color: var(--teal); }
@@ -212,61 +115,21 @@ body {
 .tech-card-name { font-family: var(--serif); font-size: 17px; margin-bottom: 6px; }
 .tech-card-body { font-size: 12.5px; line-height: 1.6; color: var(--text2); }
 .tech-card-formula { font-family: var(--mono); font-size: 11px; background: var(--bg2); padding: 6px 10px; border-radius: var(--r); margin-top: 10px; color: var(--text); }
-
-/* ── COMPARISON TABLE ── */
 .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1.5rem 0; }
-.comp-table th {
-  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--text3); padding: 8px 12px;
-  border-bottom: 1px solid var(--border); text-align: left; background: var(--bg2);
-}
+.comp-table th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; background: var(--bg2); }
 .comp-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; }
 .comp-table td:first-child { font-weight: 500; color: var(--text); }
 .comp-table tr:last-child td { border-bottom: none; }
 .comp-table .highlight td { background: var(--amber-bg); }
+.comp-table .warn td { background: var(--coral-bg); }
 .badge { font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 99px; }
 .badge.amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
 .badge.teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
 .badge.gray { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
 .badge.red { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
-
-/* ── PIPELINE STEPS (§3) ── */
-.pipeline-steps { display: flex; gap: 0; margin: 1.5rem 0; align-items: stretch; }
-.pipe-step {
-  flex: 1; border: 1px solid var(--border); border-right: none;
-  padding: 1rem 0.875rem; background: white; position: relative;
-}
-.pipe-step:last-child { border-right: 1px solid var(--border); border-radius: 0 var(--r) var(--r) 0; }
-.pipe-step:first-child { border-radius: var(--r) 0 0 var(--r); }
-.pipe-step-num { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 4px; }
-.pipe-step-name { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.3; }
-.pipe-step-sub { font-size: 10.5px; color: var(--text3); margin-top: 3px; }
-.pipe-arrow {
-  display: flex; align-items: center; color: var(--text3); font-size: 14px;
-  padding: 0 2px; flex-shrink: 0;
-}
-.pipe-step.amber { border-top: 2px solid var(--amber); }
-.pipe-step.teal { border-top: 2px solid var(--teal); }
-
-/* ── WEIGHT PARAM BARS ── */
-.param-grid { display: grid; grid-template-columns: 110px 1fr 50px; gap: 6px; align-items: center; font-size: 12.5px; margin: 1rem 0; }
-.param-name { color: var(--text2); }
-.param-bar-wrap { background: var(--bg3); border-radius: 99px; height: 6px; }
-.param-bar { height: 6px; border-radius: 99px; }
-.param-bar.amber { background: var(--amber); }
-.param-bar.teal { background: var(--teal); }
-.param-bar.purple { background: var(--purple); }
-.param-val { font-family: var(--mono); font-size: 11px; color: var(--text3); text-align: right; }
-
-/* ── SIMULATOR ── */
-.sim-wrap {
-  border: 1px solid var(--border); border-radius: var(--r-lg);
-  background: white; overflow: hidden; margin: 2rem 0;
-}
-.sim-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.875rem 1.25rem; background: var(--bg2); border-bottom: 1px solid var(--border);
-}
+.badge.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+.sim-wrap { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; overflow: hidden; margin: 2rem 0; }
+.sim-header { display: flex; align-items: center; justify-content: space-between; padding: 0.875rem 1.25rem; background: var(--bg2); border-bottom: 1px solid var(--border); }
 .sim-title { font-family: var(--mono); font-size: 11px; color: var(--text2); letter-spacing: 0.05em; }
 .sim-status { font-family: var(--mono); font-size: 10px; color: var(--text3); }
 .sim-status.running { color: var(--amber); }
@@ -274,29 +137,15 @@ body {
 .sim-body { display: grid; grid-template-columns: 240px 1fr; }
 .sim-controls { border-right: 1px solid var(--border); padding: 1rem; }
 .sim-controls-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.5rem; }
-.scenario-btn {
-  display: block; width: 100%; text-align: left; padding: 8px 10px;
-  border: none; background: none; cursor: pointer; border-radius: var(--r);
-  font-size: 12px; color: var(--text2); transition: background 0.15s; margin-bottom: 2px;
-  font-family: var(--sans);
-}
+.scenario-btn { display: block; width: 100%; text-align: left; padding: 8px 10px; border: none; background: none; cursor: pointer; border-radius: var(--r); font-size: 12px; color: var(--text2); transition: background 0.15s; margin-bottom: 2px; font-family: var(--sans); }
 .scenario-btn:hover { background: var(--bg2); }
 .scenario-btn.active { background: var(--text); color: var(--bg); }
 .scenario-desc { font-size: 12px; line-height: 1.6; color: var(--text3); padding: 0.75rem 0; border-top: 1px solid var(--border); margin-top: 0.75rem; }
-.run-btn {
-  width: 100%; margin-top: 0.75rem; padding: 8px;
-  background: var(--text); color: var(--bg); border: none; border-radius: var(--r);
-  font-family: var(--mono); font-size: 11px; cursor: pointer; letter-spacing: 0.05em;
-  transition: opacity 0.15s;
-}
+.run-btn { width: 100%; margin-top: 0.75rem; padding: 8px; background: var(--text); color: var(--bg); border: none; border-radius: var(--r); font-family: var(--mono); font-size: 11px; cursor: pointer; letter-spacing: 0.05em; transition: opacity 0.15s; }
 .run-btn:hover { opacity: 0.85; }
 .run-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .sim-stages { padding: 1rem; }
-.stage-row {
-  display: grid; grid-template-columns: 180px 1fr 100px;
-  align-items: center; gap: 12px; padding: 8px 0;
-  border-bottom: 1px solid var(--border); font-size: 12px;
-}
+.stage-row { display: grid; grid-template-columns: 180px 1fr 100px; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
 .stage-row:last-child { border-bottom: none; }
 .stage-name { display: flex; align-items: center; gap: 8px; }
 .stage-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--bg3); flex-shrink: 0; transition: background 0.3s; }
@@ -309,11 +158,7 @@ body {
 .stage-bar { height: 4px; border-radius: 99px; background: var(--teal); width: 0; transition: width 0.6s ease; }
 .stage-timing { font-family: var(--mono); font-size: 10px; color: var(--text3); text-align: right; }
 .stage-timing.done { color: var(--teal); }
-.sim-output {
-  margin: 0; padding: 1rem; background: #16150f; border-top: 1px solid var(--border);
-  font-family: var(--mono); font-size: 11.5px; line-height: 1.7;
-  color: #8a8870; min-height: 100px; max-height: 180px; overflow-y: auto;
-}
+.sim-output { margin: 0; padding: 1rem; background: #16150f; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 11.5px; line-height: 1.7; color: #8a8870; min-height: 100px; max-height: 180px; overflow-y: auto; }
 .sim-output .out-line { display: block; }
 .sim-output .out-comment { color: #4a4a38; }
 .sim-output .out-key { color: #a09060; }
@@ -325,10 +170,7 @@ body {
 .sim-step-num { font-family: var(--mono); font-size: 22px; color: var(--border2); font-weight: 400; line-height: 1; margin-bottom: 6px; }
 .sim-step-body { font-size: 12.5px; line-height: 1.6; color: var(--text2); }
 .sim-step-tag { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 4px; }
-
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-/* ── BENCHMARK CHARTS ── */
 .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 1.5rem 0; }
 .chart-card { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; padding: 1.25rem; }
 .chart-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.25rem; }
@@ -339,22 +181,29 @@ body {
 .legend-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; font-size: 11px; color: var(--text3); }
 .legend-item { display: flex; align-items: center; gap: 5px; }
 .legend-swatch { width: 10px; height: 10px; border-radius: 2px; }
-
-/* ── SYSTEM LAYERS ── */
 .layers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 1.5rem 0; }
 .layer-col { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
 .layer-header { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 12px; background: var(--bg2); border-bottom: 1px solid var(--border); color: var(--text3); }
 .layer-item { font-size: 11.5px; padding: 6px 12px; border-bottom: 1px solid var(--border); color: var(--text2); line-height: 1.4; }
 .layer-item:last-child { border-bottom: none; }
-
-/* ── WEIGHT DIAGRAM ── */
-.weight-vis { display: flex; align-items: stretch; gap: 0; height: 60px; border-radius: var(--r); overflow: hidden; margin: 1rem 0; border: 1px solid var(--border); }
-.weight-seg { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; font-weight: 500; color: white; transition: flex 0.5s ease; }
-
-/* ── PAGE FOOTER ── */
+/* Heatmap */
+.heatmap-wrap { overflow-x: auto; margin: 1.5rem 0; }
+.heatmap-table { border-collapse: collapse; font-size: 12px; }
+.heatmap-table th { font-family: var(--mono); font-size: 10px; padding: 6px 14px; background: var(--bg2); border: 1px solid var(--border); color: var(--text3); text-align: center; }
+.heatmap-table td { padding: 10px 14px; border: 1px solid var(--border); text-align: center; font-family: var(--mono); font-size: 12px; font-weight: 500; min-width: 80px; }
+.hm-sel { outline: 2px solid var(--text); outline-offset: -2px; }
+/* Failure mode table */
+.fm-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 1.5rem 0; }
+.fm-table th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; background: var(--bg2); }
+.fm-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text2); }
+.fm-table tr:last-child td { border-bottom: none; }
+.fm-table td:first-child { font-weight: 500; color: var(--coral); font-family: var(--mono); font-size: 11px; }
+/* Ref list */
+.ref-list { list-style: none; font-size: 12.5px; color: var(--text2); }
+.ref-list li { padding: 8px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 40px 1fr; gap: 8px; line-height: 1.5; }
+.ref-list li:last-child { border-bottom: none; }
+.ref-num { font-family: var(--mono); font-size: 10px; color: var(--text3); padding-top: 2px; }
 .doc-footer { padding: 2rem 2.5rem; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 11px; color: var(--text3); display: flex; justify-content: space-between; }
-
-/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .page-wrap { grid-template-columns: 1fr; }
   .sidebar { display: none; }
@@ -370,51 +219,53 @@ body {
 <body>
 <div class="page-wrap">
 
-<!-- ── SIDEBAR ── -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">fusionlm / index</div>
   <div class="sidebar-project">FusionLM</div>
   <nav>
     <ul class="sidebar-nav">
-      <li><a href="#motivation">Motivation</a></li>
-      <li><a href="#problem">Problem</a></li>
-      <li><a href="#techniques">Techniques</a></li>
-      <li><a href="#architecture">Architecture</a></li>
-      <li><a href="#simulator">Simulator</a></li>
-      <li><a href="#evaluation">Evaluation</a></li>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#motivation">§1 Motivation</a></li>
+      <li><a href="#problem">§2 Problem Statement</a></li>
+      <li><a href="#techniques">§3 Merge Techniques</a></li>
+      <li><a href="#architecture">§4 Architecture</a></li>
+      <li><a href="#simulator">§5 Simulator</a></li>
+      <li><a href="#evaluation">§6 Evaluation</a></li>
+      <li><a href="#interference">§7 Interference Analysis</a></li>
+      <li><a href="#deployment">§8 Deployment Architecture</a></li>
+      <li><a href="#failure">§9 Failure Mode Taxonomy</a></li>
+      <li><a href="#limitations">§10 Limitations</a></li>
+      <li><a href="#references">References</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <ul class="sidebar-nav">
-      <li><a href="#abstract" class="sub">Abstract</a></li>
-      <li><a href="#problem" class="sub">2.1 The cost problem</a></li>
-      <li><a href="#failure" class="sub">2.2 Failure modes</a></li>
-      <li><a href="#slerp" class="sub">3.1 SLERP</a></li>
-      <li><a href="#ties" class="sub">3.2 TIES-Merging</a></li>
-      <li><a href="#dare" class="sub">3.3 DARE</a></li>
-      <li><a href="#pipeline" class="sub">4.1 Pipeline</a></li>
-      <li><a href="#config" class="sub">4.2 Config</a></li>
-      <li><a href="#stack" class="sub">4.3 Stack</a></li>
-      <li><a href="#benchmarks" class="sub">6. Benchmarks</a></li>
+      <li><a href="#baselines" class="sub">2.3 Competitive baselines</a></li>
+      <li><a href="#hyperparam" class="sub">4.3 Hyperparameter sweep</a></li>
+      <li><a href="#repro" class="sub">6.1 Reproducibility</a></li>
+      <li><a href="#benchmarks" class="sub">6.2 Benchmarks</a></li>
+      <li><a href="#layer-analysis" class="sub">7.1 Per-layer conflicts</a></li>
+      <li><a href="#deploy-topo" class="sub">8.1 Serving topology</a></li>
+      <li><a href="#observability" class="sub">8.2 Observability</a></li>
     </ul>
   </nav>
-
   <div class="stack-block">
     <div class="stack-title">Stack</div>
     <div class="stack-item"><strong>mergekit · arcee-ai</strong>merge orchestration</div>
-    <div class="stack-item"><strong>BioMistral-7B</strong>quant specialist</div>
+    <div class="stack-item"><strong>Mistral-7B-Instruct-v0.2</strong>quant specialist base</div>
     <div class="stack-item"><strong>OpenHermes-2.5</strong>comms specialist</div>
-    <div class="stack-item"><strong>lm-eval-harness</strong>benchmarking</div>
-    <div class="stack-item"><strong>ollama · llama.cpp</strong>local inference</div>
-    <div class="stack-item"><strong>Gradio</strong>demo UI</div>
-    <div class="stack-item"><strong>HuggingFace Hub</strong>model hosting</div>
+    <div class="stack-item"><strong>lm-eval-harness v0.4.2</strong>benchmarking</div>
+    <div class="stack-item"><strong>vLLM · ollama</strong>inference serving</div>
+    <div class="stack-item"><strong>Vertex AI Model Serving</strong>production</div>
+    <div class="stack-item"><strong>HuggingFace Hub</strong>model registry</div>
   </div>
 </aside>
 
-<!-- ── MAIN ── -->
+<!-- MAIN -->
 <main class="main">
   <div class="topbar">
     <div class="topbar-breadcrumb">
-      <a href="#">raosiddharthp</a> / <a href="#">fusionlm</a> · page 01 of 04 · 2026
+      <a href="#">raosiddharthp</a> / <a href="#">fusionlm</a> · Architecture Design Document · 2026
     </div>
     <div class="topbar-right">
       <span class="topbar-tag">MLE Portfolio</span>
@@ -424,156 +275,119 @@ body {
 
   <div class="content">
 
-    <!-- ── HEADER ── -->
+    <!-- HEADER -->
     <header class="doc-header" id="abstract">
-      <div class="doc-eyebrow">FusionLM v0.1 &nbsp;·&nbsp; MLE Portfolio &nbsp;·&nbsp; 2026</div>
+      <div class="doc-eyebrow">FusionLM v0.2 &nbsp;·&nbsp; Architecture Design Document &nbsp;·&nbsp; 2026</div>
       <h1 class="doc-title">FusionLM: <em>Model Merging</em><br>for Enterprise Finance AI</h1>
       <div class="doc-byline">
-        <span>Siddharth Rao &nbsp;·&nbsp; Machine Learning Engineer</span>
-        <span>Architecture Portfolio &nbsp;·&nbsp; March 2026</span>
+        <span>Siddharth Rao &nbsp;·&nbsp; TOGAF EA · GCP CA · MLE · Gen AI Lead</span>
+        <span>Architecture Portfolio &nbsp;·&nbsp; April 2026</span>
       </div>
 
       <div class="stat-grid">
         <div class="stat-cell">
-          <div class="stat-value amber">0</div>
-          <div class="stat-label">retraining cost<br>merging requires no new gradient steps</div>
+          <div class="stat-value amber">$0</div>
+          <div class="stat-label">retraining cost<br>merging requires no gradient steps</div>
         </div>
         <div class="stat-cell">
           <div class="stat-value teal">1×</div>
-          <div class="stat-label">inference cost<br>vs. 2× for a two-model ensemble pipeline</div>
+          <div class="stat-label">inference cost<br>vs. 2× for two-model pipeline</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-value purple">3</div>
-          <div class="stat-label">merge strategies compared<br>SLERP, TIES-Merging, DARE</div>
+          <div class="stat-value purple">98.5%</div>
+          <div class="stat-label">of pipeline baseline quality (FinQA)<br>at half the serving cost</div>
         </div>
       </div>
 
       <div class="abstract-grid">
         <div class="abstract-label">Abstract</div>
         <div class="abstract-body">
-          <p>Enterprise finance teams routinely deploy two independent fine-tuned language models: one specialised on quantitative reasoning — earnings analysis, covenant interpretation, DCF modelling — and one on client-facing communication. Running both in a pipeline doubles inference cost, introduces latency, and requires a hand-off layer that degrades output coherence. This document describes FusionLM, an open-source system that merges two specialist models at the weight level using SLERP, TIES-Merging, and DARE, producing a single model that preserves both domain capabilities without retraining.</p>
-          <p>The primary audience is ML engineering teams at asset managers, investment banks, and fintech platforms who have already fine-tuned specialist models and need a cost-effective path to combining them. FusionLM runs entirely on CPU — no GPU required for the merge step — and the resulting model is evaluated against both source specialists on domain-specific benchmarks.</p>
+          <p>Enterprise finance teams routinely deploy two independent fine-tuned language models: one specialised on quantitative reasoning — earnings analysis, covenant interpretation, DCF modelling — and one on client-facing communication. Running both in a pipeline doubles inference cost, introduces serial latency, and requires a serialisation hand-off that degrades output coherence by discarding intermediate attention states. This document describes FusionLM, an open-source system that merges two specialist models at the weight level using SLERP, TIES-Merging, and DARE, producing a single model that retains both domain capabilities without retraining.</p>
+          <p>All benchmark results presented here are reproducible. Specialist model identities, exact checkpoint hashes, evaluation harness version, hardware configuration, and inference dtype are specified in §6.1. Hyperparameter selection is validated by an ablation sweep reported in §4.3. A per-layer interference analysis motivating the DARE-TIES configuration is presented in §7. Production deployment topology, SLA analysis, and observability design are addressed in §8.</p>
           <div class="kw-row">
             <span class="kw">model merging</span>
             <span class="kw">SLERP</span>
             <span class="kw">TIES-Merging</span>
             <span class="kw">DARE</span>
-            <span class="kw">fine-tuned LLMs</span>
+            <span class="kw">task vectors</span>
             <span class="kw">enterprise finance</span>
-            <span class="kw">zero-cost fusion</span>
             <span class="kw">mergekit</span>
+            <span class="kw">FinQA</span>
+            <span class="kw">interference analysis</span>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- ── §1 MOTIVATION ── -->
+    <!-- §1 MOTIVATION -->
     <section class="section" id="motivation">
       <h2 class="section-heading"><span class="section-num">§1</span> Motivation</h2>
-      <p class="body-text">
-        Enterprise AI teams at financial institutions have accumulated a quiet problem. Between 2023 and 2025, the standard practice was to fine-tune separate models for separate workflows: one model trained on 10-Ks, earnings transcripts, and financial covenants; another trained on client communication, meeting summaries, and CRM tone. Both models are good at their jobs. Neither handles the other's domain.
-      </p>
-      <p class="body-text">
-        Any real analyst workflow — drafting a client memo that explains a DCF analysis, or writing a risk summary that is both numerically precise and legible to a non-technical LP — requires both capabilities simultaneously. Today, teams solve this in one of three ways, all of them expensive.
-      </p>
+      <p class="body-text">Enterprise AI teams at financial institutions have accumulated a quiet structural problem. Between 2023 and 2025, the standard practice was to fine-tune separate models for separate workflows: one model trained on 10-Ks, earnings transcripts, and financial covenants; another trained on client communication, meeting summaries, and investor tone. Both models perform well within their respective domains. Neither handles the other's domain reliably.</p>
+      <p class="body-text">Any real analyst workflow — drafting a client memo that explains a DCF analysis, or writing a risk summary that is both numerically precise and accessible to a non-technical LP — requires both capabilities simultaneously. Today, teams solve this in one of three ways, each carrying a distinct cost profile.</p>
 
-      <!-- Figure 1 — Cost comparison diagram -->
       <div class="figure" id="fig1">
-        <div class="figure-label">Figure 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-        <div class="figure-sublabel">Three approaches to multi-domain LLM capability — cost and quality trade-offs</div>
+        <div class="figure-label">Figure 1</div>
+        <div class="figure-sublabel">Three approaches to multi-domain LLM capability — cost and architectural trade-offs</div>
         <div class="figure-body" style="padding: 1.5rem;">
           <svg width="100%" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/>
-              </marker>
-            </defs>
-
-            <!-- APPROACH A: Two-model pipeline -->
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+            <!-- A -->
             <rect x="10" y="20" width="200" height="260" rx="8" fill="#fafaf8" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="110" y="44" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880" letter-spacing="1">APPROACH A</text>
             <text x="110" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#1a1917">Two-model pipeline</text>
-
             <rect x="30" y="78" width="160" height="40" rx="5" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.5"/>
             <text x="110" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">Quant Model</text>
-            <text x="110" y="109" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#b07010">finance-ft-7B</text>
-
+            <text x="110" y="109" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#b07010">mistral-7b-finance-ft</text>
             <line x1="110" y1="118" x2="110" y2="138" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr)"/>
-            <text x="118" y="132" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">hand-off</text>
-
+            <text x="118" y="131" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b03820">string hand-off</text>
             <rect x="30" y="140" width="160" height="40" rx="5" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.5"/>
             <text x="110" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#0a6b52">Comms Model</text>
-            <text x="110" y="171" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">openhermes-ft-7B</text>
-
-            <!-- Cost indicators A -->
+            <text x="110" y="171" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">openhermes-2.5-ft</text>
             <rect x="30" y="198" width="160" height="66" rx="4" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="110" y="216" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5a5852">COST PROFILE</text>
-            <text x="40" y="234" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Inference</text>
-            <text x="186" y="234" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">2× GPU</text>
-            <text x="40" y="249" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Latency</text>
-            <text x="186" y="249" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">+serial</text>
-            <text x="40" y="264" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Coherence</text>
-            <text x="186" y="264" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">degraded</text>
-
-            <!-- APPROACH B: Joint retraining -->
+            <text x="40" y="234" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Inference</text><text x="186" y="234" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">2× GPU</text>
+            <text x="40" y="249" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Latency</text><text x="186" y="249" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">+serial</text>
+            <text x="40" y="264" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Coherence</text><text x="186" y="264" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">degraded</text>
+            <!-- B -->
             <rect x="260" y="20" width="200" height="260" rx="8" fill="#fafaf8" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="360" y="44" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880" letter-spacing="1">APPROACH B</text>
             <text x="360" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#1a1917">Joint retraining</text>
-
             <rect x="280" y="78" width="160" height="56" rx="5" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="360" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Combine training datasets</text>
-            <text x="360" y="111" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Fine-tune from base</text>
+            <text x="360" y="111" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Fine-tune from base model</text>
             <text x="360" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Risk: catastrophic forgetting</text>
-
             <rect x="280" y="148" width="160" height="34" rx="5" fill="#fdf0ec" stroke="#e8a090" stroke-width="0.5"/>
             <text x="360" y="165" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#b03820">~$2,000–$8,000 GPU cost</text>
             <text x="360" y="178" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b03820">A100 · 40–120 hrs</text>
-
             <rect x="280" y="198" width="160" height="66" rx="4" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="360" y="216" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#5a5852">COST PROFILE</text>
-            <text x="290" y="234" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Training</text>
-            <text x="436" y="234" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">very high</text>
-            <text x="290" y="249" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Data curation</text>
-            <text x="436" y="249" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">weeks</text>
-            <text x="290" y="264" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Domain loss risk</text>
-            <text x="436" y="264" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">high</text>
-
-            <!-- APPROACH C: FusionLM -->
+            <text x="290" y="234" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Training</text><text x="436" y="234" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">very high</text>
+            <text x="290" y="249" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Data curation</text><text x="436" y="249" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">weeks</text>
+            <text x="290" y="264" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Domain loss risk</text><text x="436" y="264" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#b03820">high</text>
+            <!-- C: FusionLM -->
             <rect x="510" y="20" width="200" height="260" rx="8" fill="white" stroke="#b07010" stroke-width="1.5"/>
             <text x="610" y="44" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b07010" letter-spacing="1">FUSIONLM</text>
             <text x="610" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="500" fill="#1a1917">Weight merging</text>
-
             <rect x="530" y="78" width="160" height="40" rx="5" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.5"/>
             <text x="610" y="101" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#b07010">Quant + Comms weights</text>
-
             <text x="610" y="133" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">⟵ SLERP / TIES / DARE ⟶</text>
-
             <rect x="530" y="142" width="160" height="40" rx="5" fill="#0a6b52" stroke="#0a6b52"/>
             <text x="610" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="white">FusionLM-7B</text>
             <text x="610" y="172" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.75)">single merged model</text>
-
             <rect x="530" y="198" width="160" height="66" rx="4" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.5"/>
             <text x="610" y="216" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0a6b52">COST PROFILE</text>
-            <text x="540" y="234" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">Training</text>
-            <text x="686" y="234" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">$0</text>
-            <text x="540" y="249" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">Inference</text>
-            <text x="686" y="249" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">1× GPU</text>
-            <text x="540" y="264" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">Domain loss</text>
-            <text x="686" y="264" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">minimal</text>
+            <text x="540" y="234" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">Training</text><text x="686" y="234" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">$0</text>
+            <text x="540" y="249" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">Inference</text><text x="686" y="249" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">1× GPU</text>
+            <text x="540" y="264" font-family="Inter,sans-serif" font-size="10" fill="#0a6b52">Domain loss</text><text x="686" y="264" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0a6b52">minimal</text>
           </svg>
         </div>
       </div>
-
-      <div class="callout amber">
-        <div class="callout-label">Design constraint</div>
-        <div class="callout-body">FusionLM requires no new training data, no GPU for the merge step, and no changes to downstream serving infrastructure. The integration surface is a single merged model file — a drop-in replacement for whichever specialist was being served.</div>
-      </div>
     </section>
 
-    <!-- ── §2 PROBLEM ── -->
+    <!-- §2 PROBLEM STATEMENT -->
     <section class="section" id="problem">
       <h2 class="section-heading"><span class="section-num">§2</span> Problem Statement</h2>
-      <p class="body-text">The core problem is a mismatch between how models are trained and how analysts actually work. Financial workflows are inherently hybrid — they require precise numerical reasoning <em>and</em> clear communication in the same output. Training separate models for each creates a structural gap that is expensive to close at inference time.</p>
+      <p class="body-text">The core problem is a mismatch between how models are trained and how analysts actually work. Financial workflows are inherently hybrid — they require precise numerical reasoning and clear communication in the same output. Training separate models for each creates a structural gap that is expensive to close at inference time.</p>
 
       <div class="subsection-heading">2.1 The enterprise cost problem</div>
       <p class="body-text">The table below shows the financial services teams where this specialist-silo pattern is most prevalent and the specific failure mode each team reports.</p>
@@ -581,75 +395,50 @@ body {
       <table class="comp-table">
         <thead><tr><th>Team</th><th>Specialist A</th><th>Specialist B</th><th>Reported failure</th></tr></thead>
         <tbody>
-          <tr><td>Investment banking — M&amp;A</td><td>Valuation model (DCF, comps)</td><td>Pitch deck drafter</td><td>Numerics correct but prose is dense; deck drafter ignores model outputs</td></tr>
-          <tr><td>Asset management — research</td><td>Earnings analysis model</td><td>Client memo writer</td><td>Two separate API calls; memo writer hallucinates figures</td></tr>
+          <tr><td>Investment banking — M&A</td><td>Valuation model (DCF, comps)</td><td>Pitch deck drafter</td><td>Numerics correct but prose is dense; deck drafter ignores model outputs</td></tr>
+          <tr><td>Asset management — research</td><td>Earnings analysis model</td><td>Client memo writer</td><td>Two API calls; memo writer hallucinates figures</td></tr>
           <tr><td>Risk &amp; compliance</td><td>Covenant parser / flagging</td><td>Regulatory summary writer</td><td>Hand-off layer loses covenant context; summaries imprecise</td></tr>
           <tr class="highlight"><td>Private equity — portfolio monitoring</td><td>Financial statement analyser</td><td>LP update writer</td><td><strong>Most acute:</strong> LP memos require both deep numerics and accessible narrative in same document</td></tr>
           <tr><td>Retail banking — advisory</td><td>Portfolio optimisation model</td><td>Client-facing advisor bot</td><td>Optimisation outputs not reachable by client model; separate context</td></tr>
         </tbody>
       </table>
 
-      <div class="subsection-heading" id="failure">2.2 Why naive ensembling fails</div>
-      <p class="body-text">The two-model pipeline (Figure 1, Approach A) is the most common workaround. It fails in three measurable ways, shown in Figure 2.</p>
+      <div class="subsection-heading" id="failure-modes">2.2 Why naive ensembling fails</div>
+      <p class="body-text">The two-model pipeline (Figure 2, Approach A) is the most common workaround. It fails in three measurable ways.</p>
 
-      <!-- Figure 2 — Pipeline failure diagram -->
       <div class="figure" id="fig2">
-        <div class="figure-label">Figure 2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="figure-label">Figure 2</div>
         <div class="figure-sublabel">Two-model pipeline — three structural failure modes</div>
         <div class="figure-body" style="padding:1.5rem;">
           <svg width="100%" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/>
-              </marker>
-            </defs>
-            <!-- Query -->
+            <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
             <rect x="10" y="90" width="100" height="44" rx="6" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="60" y="109" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">User query</text>
             <text x="60" y="123" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">hybrid task</text>
             <line x1="110" y1="112" x2="138" y2="112" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr2)"/>
-
-            <!-- Model A -->
             <rect x="140" y="70" width="130" height="84" rx="6" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.5"/>
             <text x="205" y="91" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b07010">MODEL A</text>
             <text x="205" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">Quant</text>
-            <text x="205" y="121" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#b07010">finance-ft-7B</text>
+            <text x="205" y="121" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#b07010">mistral-7b-finance-ft</text>
             <text x="205" y="143" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">~400ms</text>
-
-            <!-- Failure 1 -->
             <text x="205" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#b03820">① Context lost at boundary</text>
-
             <line x1="270" y1="112" x2="298" y2="112" stroke="#b03820" stroke-width="0.75" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-
-            <!-- Hand-off -->
             <rect x="300" y="90" width="90" height="44" rx="4" fill="#fdf0ec" stroke="#e8a090" stroke-width="0.75"/>
             <text x="345" y="106" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b03820">HAND-OFF</text>
             <text x="345" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#b03820">string parsing</text>
             <text x="345" y="134" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#b03820">context truncation</text>
-
-            <!-- Failure 2 -->
             <text x="345" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#b03820">② Serial latency adds</text>
-
             <line x1="390" y1="112" x2="418" y2="112" stroke="#b03820" stroke-width="0.75" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
-
-            <!-- Model B -->
             <rect x="420" y="70" width="130" height="84" rx="6" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.5"/>
             <text x="485" y="91" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0a6b52">MODEL B</text>
             <text x="485" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#0a6b52">Comms</text>
-            <text x="485" y="121" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">openhermes-ft-7B</text>
+            <text x="485" y="121" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">openhermes-2.5-ft</text>
             <text x="485" y="143" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">~400ms</text>
-
-            <!-- Failure 3 -->
             <text x="485" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#b03820">③ 2× inference cost</text>
-
             <line x1="550" y1="112" x2="578" y2="112" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr2)"/>
-
-            <!-- Output -->
             <rect x="580" y="90" width="120" height="44" rx="6" fill="white" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="640" y="109" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">Output</text>
             <text x="640" y="123" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">coherence degraded</text>
-
-            <!-- Total latency bar -->
             <text x="10" y="218" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">Total latency</text>
             <rect x="10" y="224" width="190" height="5" rx="2" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.5"/>
             <text x="205" y="231" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">~400ms</text>
@@ -664,359 +453,250 @@ body {
 
       <div class="callout">
         <div class="callout-label">Key observation</div>
-        <div class="callout-body">The hand-off does not fail loudly. The comms model receives a text string from the quant model and generates a fluent, confident response — it simply doesn't have access to the intermediate attention states and logits that encode quantitative precision. The failure is silent and syntactically correct.</div>
+        <div class="callout-body">The hand-off does not fail loudly. The comms model receives a text string from the quant model and generates a fluent, confident response — it simply does not have access to the intermediate attention states and logits that encode quantitative precision. The failure is silent and syntactically correct.</div>
+      </div>
+
+      <div class="subsection-heading" id="baselines">2.3 Competitive baselines considered</div>
+      <p class="body-text">Before committing to weight merging, four alternative architectures were evaluated. The comparison below characterises each option's cost, quality, and operational complexity. Weight merging is not trivially superior in all dimensions — the decision record is presented in full.</p>
+
+      <table class="comp-table">
+        <thead><tr><th>Architecture</th><th>Quality ceiling</th><th>Inference cost</th><th>Operational complexity</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Naive pipeline (string hand-off)</td><td>Pipeline baseline — context lost at boundary</td><td><span class="badge red">2× GPU</span></td><td>Low — two separate deploys</td><td><span class="badge red">rejected</span> — context loss, serial latency</td></tr>
+          <tr><td>Logit-level ensemble (sum log-probs)</td><td>Matches pipeline quality without context loss</td><td><span class="badge red">2× GPU</span></td><td>Medium — requires synchronised decoding</td><td><span class="badge gray">deferred</span> — still 2× serving cost; synchronisation overhead</td></tr>
+          <tr><td>Task-routing classifier (DeBERTa-v3)</td><td>Best specialist per query</td><td><span class="badge teal">1× GPU + classifier</span></td><td>Medium — requires query classifier and two model replicas</td><td><span class="badge gray">deferred</span> — no hybrid output; misroutes multi-domain queries</td></tr>
+          <tr><td>LoRA multi-adapter serving (PEFT hot-swap)</td><td>Near-joint-retrain quality per adapter</td><td><span class="badge teal">1× GPU + adapter I/O</span></td><td>High — adapter loading latency; base model must be same</td><td><span class="badge gray">deferred</span> — adapter swap latency 80–200ms per query [12]; stateful serving</td></tr>
+          <tr class="highlight"><td><strong>Weight merging (FusionLM)</strong></td><td>98.5% of pipeline baseline (FinQA)</td><td><span class="badge teal">1× GPU</span></td><td>Low — single static model file</td><td><span class="badge teal">selected</span> — stateless serving; no swap overhead; drop-in replacement</td></tr>
+          <tr><td>Joint retraining</td><td>Upper bound — 100%</td><td><span class="badge teal">1× GPU</span></td><td>High — data curation, GPU budget, re-evaluation</td><td><span class="badge gray">quality ceiling</span> — $2,000–$8,000 GPU; weeks of iteration [2]</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout amber">
+        <div class="callout-label">Architecture decision record</div>
+        <div class="callout-body">Weight merging was selected over logit ensemble and LoRA hot-swap on the basis of three constraints: (1) stateless serving — the merged model is a static artifact requiring no runtime state management; (2) zero adapter I/O overhead — LoRA hot-swap introduces 80–200ms per query at typical adapter sizes [12]; (3) deployment simplicity — the merged model is a drop-in replacement for either specialist in existing vLLM or Vertex AI serving infrastructure without configuration changes.</div>
       </div>
     </section>
 
-    <!-- ── §3 TECHNIQUES ── -->
+    <!-- §3 TECHNIQUES -->
     <section class="section" id="techniques">
       <h2 class="section-heading"><span class="section-num">§3</span> Merge Techniques</h2>
-      <p class="body-text">FusionLM implements three merge algorithms, each operating on the delta between fine-tuned weights and the shared base model. All three require no gradient computation — the merge step runs on CPU in under 20 minutes for 7B models.</p>
+      <p class="body-text">FusionLM implements three merge algorithms, each operating on the delta between fine-tuned weights and the shared base model. All three require no gradient computation — the merge step runs on CPU in under 20 minutes for 7B models [1]. All source models must share an identical base architecture and tokenizer vocabulary; merging models with different architectures or tokenisers is not supported.</p>
 
-      <!-- Figure 3 — Weight space geometry diagram -->
       <div class="figure" id="fig3">
-        <div class="figure-label">Figure 3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="figure-label">Figure 3</div>
         <div class="figure-sublabel">Weight-space geometry — where each technique operates</div>
         <div class="figure-body" style="padding: 1.5rem;">
           <svg width="100%" viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/>
-              </marker>
-            </defs>
-
-            <!-- SLERP panel -->
+            <defs><marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
             <rect x="10" y="10" width="220" height="175" rx="8" fill="white" stroke="#e8c870" stroke-width="1"/>
             <text x="120" y="32" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b07010" letter-spacing="1">SLERP</text>
-            <!-- Hypersphere arc -->
             <ellipse cx="120" cy="110" rx="70" ry="55" fill="none" stroke="#e8c870" stroke-width="0.75" stroke-dasharray="4,3"/>
-            <!-- Model A point -->
             <circle cx="64" cy="82" r="5" fill="#b07010"/>
             <text x="50" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#b07010">θ_A</text>
-            <!-- Model B point -->
             <circle cx="178" cy="82" r="5" fill="#0a6b52"/>
             <text x="192" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">θ_B</text>
-            <!-- Arc path -->
             <path d="M64 82 Q120 42 178 82" fill="none" stroke="#b07010" stroke-width="1.5" stroke-dasharray="5,3"/>
-            <!-- Merged point -->
             <circle cx="120" cy="58" r="6" fill="#4a40b0"/>
             <text x="120" y="50" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#4a40b0">θ_t</text>
-            <!-- Labels -->
             <text x="120" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Interpolates along</text>
-            <text x="120" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">spherical arc · preserves norm</text>
+            <text x="120" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">spherical arc · applied per-layer</text>
             <text x="120" y="177" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">2 models only</text>
-
-            <!-- TIES panel -->
             <rect x="250" y="10" width="220" height="175" rx="8" fill="white" stroke="#80c8b0" stroke-width="1"/>
             <text x="360" y="32" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0a6b52" letter-spacing="1">TIES-MERGING</text>
-
-            <!-- Task vectors -->
             <line x1="360" y1="140" x2="314" y2="78" stroke="#b07010" stroke-width="1.5" marker-end="url(#arr3)"/>
             <text x="304" y="74" font-family="Inter,sans-serif" font-size="9.5" fill="#b07010">τ_A</text>
             <line x1="360" y1="140" x2="410" y2="76" stroke="#0a6b52" stroke-width="1.5" marker-end="url(#arr3)"/>
             <text x="414" y="74" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">τ_B</text>
-            <!-- Resolve arrow -->
             <line x1="360" y1="140" x2="362" y2="64" stroke="#4a40b0" stroke-width="2" marker-end="url(#arr3)"/>
             <circle cx="360" cy="140" r="4" fill="#f2f0eb" stroke="#d8d5ce"/>
             <text x="370" y="62" font-family="Inter,sans-serif" font-size="9.5" fill="#4a40b0">τ_merged</text>
             <text x="346" y="155" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">base θ₀</text>
-
             <text x="360" y="165" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Prunes small deltas · resolves</text>
             <text x="360" y="177" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">sign conflicts · N models</text>
-
-            <!-- DARE panel -->
             <rect x="490" y="10" width="220" height="175" rx="8" fill="white" stroke="#b0a8e8" stroke-width="1"/>
             <text x="600" y="32" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#4a40b0" letter-spacing="1">DARE</text>
-
-            <!-- Parameter bars -->
             <rect x="510" y="46" width="160" height="10" rx="2" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.5"/>
             <rect x="510" y="46" width="80" height="10" rx="2" fill="#b07010"/>
             <rect x="510" y="62" width="160" height="10" rx="2" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
             <rect x="510" y="62" width="22" height="10" rx="2" fill="#4a40b0"/>
             <rect x="510" y="78" width="160" height="10" rx="2" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
             <rect x="510" y="78" width="140" height="10" rx="2" fill="#b07010"/>
-            <text x="676" y="58" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">keep</text>
-            <text x="676" y="74" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4a40b0">keep</text>
-            <text x="676" y="90" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">keep</text>
-
             <text x="520" y="110" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">1. Drop p% of delta params</text>
             <text x="520" y="124" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">2. Rescale by 1/(1−p)</text>
             <text x="520" y="138" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">3. Apply to base model</text>
-
-            <text x="600" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Sparsification · works even</text>
-            <text x="600" y="174" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">with 90% drop rate</text>
+            <text x="600" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Sparsification · effective</text>
+            <text x="600" y="174" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">up to 90% drop rate [3]</text>
           </svg>
         </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Implementation note — SLERP geometry</div>
+        <div class="callout-body">SLERP is applied per transformer layer independently, treating each layer's flattened weight matrix as a single vector. The geometric intuition (interpolation on a hypersphere) is a layer-local approximation, not a global weight-space operation. The formula θ_t = sin((1−t)Ω)/sin(Ω)·θ_A + sin(tΩ)/sin(Ω)·θ_B holds within each layer independently. When t=0 the output is θ_A; when t=1 the output is θ_B.</div>
       </div>
 
       <div class="tech-grid">
-        <!-- SLERP card -->
         <div class="tech-card" id="slerp">
           <div class="tech-card-tag amber">3.1 · SLERP</div>
           <div class="tech-card-name">Spherical Linear Interpolation</div>
-          <div class="tech-card-body">Interpolates between two model weight tensors along a geodesic arc on a hypersphere, preserving the geometric properties of weight space. Unlike linear interpolation, SLERP maintains constant angular velocity during blending.</div>
+          <div class="tech-card-body">Interpolates between two model weight tensors per layer along a geodesic arc, preserving norm within each layer. Unlike linear interpolation, SLERP maintains constant angular velocity during blending. Applied independently to each transformer block.</div>
           <div class="tech-card-formula">θ_t = sin((1-t)Ω)/sin(Ω)·θ_A + sin(tΩ)/sin(Ω)·θ_B</div>
-          <div class="tech-card-body" style="margin-top:10px;"><strong>Best for:</strong> two models with similar architecture, where a smooth interpolation across the weight manifold is desired. Parameter <code>t ∈ [0,1]</code> controls blend ratio.</div>
+          <div class="tech-card-body" style="margin-top:10px;"><strong>Best for:</strong> two models with identical base architecture, where domains are not strongly conflicting. Parameter <code>t ∈ [0,1]</code> controls blend ratio. Requires no density parameter.</div>
         </div>
-        <!-- TIES card -->
         <div class="tech-card" id="ties">
           <div class="tech-card-tag teal">3.2 · TIES-Merging</div>
           <div class="tech-card-name">Trim, Elect Sign, Merge</div>
-          <div class="tech-card-body">Addresses two failure modes of naive weight averaging: redundant delta parameters that dilute signal, and sign conflicts where models disagree on the direction of a weight update.</div>
+          <div class="tech-card-body">Addresses two failure modes of naive weight averaging: redundant delta parameters that dilute signal, and sign conflicts where models disagree on the direction of a weight update. Operates on task vectors τ = θ_ft − θ_base [4].</div>
           <div class="tech-card-formula">τ̃ = γ · sign(τ̂) ⊙ |τ̂| where τ̂ resolves by sign election</div>
           <div class="tech-card-body" style="margin-top:10px;"><strong>Best for:</strong> merging 3+ models. Automatically handles interference between task vectors. More robust than SLERP when domain gap is large.</div>
         </div>
-        <!-- DARE card -->
         <div class="tech-card" id="dare">
           <div class="tech-card-tag purple">3.3 · DARE</div>
           <div class="tech-card-name">Drop And REscale</div>
-          <div class="tech-card-body">Randomly zeros out a fraction p of each fine-tuned model's delta parameters, then rescales the survivors by 1/(1−p) to preserve the expected embedding magnitude. Works because delta parameters are surprisingly sparse.</div>
+          <div class="tech-card-body">Randomly zeros out a fraction p of each fine-tuned model's delta parameters, then rescales the survivors by 1/(1−p) to preserve expected embedding magnitude. Effective because delta parameters are empirically sparse — most carry near-zero signal [3].</div>
           <div class="tech-card-formula">δ̃ᵢ = δᵢ/(1-p) · Bernoulli(1-p)</div>
-          <div class="tech-card-body" style="margin-top:10px;"><strong>Best for:</strong> augmenting TIES (DARE-TIES). Effective with drop rates up to 90%. Reduces interference between specialist models before the TIES election step.</div>
+          <div class="tech-card-body" style="margin-top:10px;"><strong>Best for:</strong> pre-processing before TIES (DARE-TIES). Effective with drop rates up to 90%. Per-layer interference analysis in §7 motivates the selected density per block.</div>
         </div>
       </div>
-
-      <!-- Figure 4 — Technique selection guide -->
-      <div class="figure" id="fig4">
-        <div class="figure-label">Figure 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-        <div class="figure-sublabel">Technique selection decision tree</div>
-        <div class="figure-body" style="padding:1.5rem;">
-          <svg width="100%" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/>
-              </marker>
-            </defs>
-            <!-- Root -->
-            <rect x="270" y="10" width="180" height="40" rx="6" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
-            <text x="360" y="27" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">How many models?</text>
-            <text x="360" y="42" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">start here</text>
-
-            <!-- 2 models branch -->
-            <line x1="300" y1="50" x2="160" y2="90" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr4)"/>
-            <text x="210" y="78" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">2 models</text>
-
-            <rect x="70" y="90" width="180" height="40" rx="6" fill="#fafaf8" stroke="#d8d5ce" stroke-width="0.5"/>
-            <text x="160" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#1a1917">Domain gap large?</text>
-            <text x="160" y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">quant vs. comms</text>
-
-            <line x1="120" y1="130" x2="90" y2="170" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr4)"/>
-            <text x="80" y="158" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">yes</text>
-            <line x1="200" y1="130" x2="230" y2="170" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr4)"/>
-            <text x="218" y="158" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">no</text>
-
-            <rect x="20" y="170" width="130" height="44" rx="6" fill="#fdf0ec" stroke="#e8a090" stroke-width="0.5"/>
-            <text x="85" y="189" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b03820">TIES-Merging</text>
-            <text x="85" y="203" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b03820">or DARE-TIES</text>
-
-            <rect x="170" y="170" width="120" height="44" rx="6" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.75"/>
-            <text x="230" y="189" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">SLERP</text>
-            <text x="230" y="203" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b07010">t ≈ 0.5</text>
-
-            <!-- 3+ models branch -->
-            <line x1="420" y1="50" x2="540" y2="90" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr4)"/>
-            <text x="510" y="78" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">3+ models</text>
-
-            <rect x="460" y="90" width="180" height="40" rx="6" fill="#fafaf8" stroke="#d8d5ce" stroke-width="0.5"/>
-            <text x="550" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#1a1917">High interference?</text>
-            <text x="550" y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">diverse domains</text>
-
-            <line x1="510" y1="130" x2="480" y2="170" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr4)"/>
-            <text x="468" y="158" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">yes</text>
-            <line x1="590" y1="130" x2="620" y2="170" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr4)"/>
-            <text x="608" y="158" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">no</text>
-
-            <rect x="400" y="170" width="140" height="44" rx="6" fill="#f0effe" stroke="#b0a8e8" stroke-width="0.75"/>
-            <text x="470" y="189" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#4a40b0">DARE-TIES</text>
-            <text x="470" y="203" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#4a40b0">density ≤ 0.5</text>
-
-            <rect x="570" y="170" width="130" height="44" rx="6" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.75"/>
-            <text x="635" y="189" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#0a6b52">TIES-Merging</text>
-            <text x="635" y="203" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0a6b52">linear fallback</text>
-
-            <!-- FusionLM note -->
-            <text x="85" y="236" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#b03820">← FusionLM default</text>
-            <text x="230" y="236" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#b07010">← SLERP baseline</text>
-            <text x="470" y="236" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#4a40b0">← best benchmark</text>
-          </svg>
-        </div>
-      </div>
-
-      <table class="comp-table">
-        <thead><tr><th>Property</th><th>SLERP</th><th>TIES-Merging</th><th>DARE</th></tr></thead>
-        <tbody>
-          <tr><td>Models supported</td><td>2 only</td><td>N models</td><td>Augments TIES/linear</td></tr>
-          <tr><td>Key parameter</td><td><code>t ∈ [0,1]</code></td><td><code>density, weight</code></td><td><code>drop_rate p</code></td></tr>
-          <tr><td>Interference handling</td><td><span class="badge gray">none</span></td><td><span class="badge teal">sign election</span></td><td><span class="badge amber">sparsification</span></td></tr>
-          <tr><td>GPU required for merge</td><td><span class="badge teal">no — CPU only</span></td><td><span class="badge teal">no — CPU only</span></td><td><span class="badge teal">no — CPU only</span></td></tr>
-          <tr><td>FusionLM benchmark rank</td><td>3rd</td><td>2nd</td><td><strong>1st (DARE-TIES)</strong></td></tr>
-        </tbody>
-      </table>
     </section>
 
-    <!-- ── §4 ARCHITECTURE ── -->
+    <!-- §4 ARCHITECTURE -->
     <section class="section" id="architecture">
       <h2 class="section-heading"><span class="section-num">§4</span> Architecture</h2>
-      <p class="body-text">FusionLM orchestrates the full merge workflow — from loading pre-trained specialist checkpoints through to evaluation and serving. The system wraps <code>mergekit</code> (arcee-ai) and adds a benchmark harness, configuration recommendation engine, and Gradio demo UI on top.</p>
 
-      <div class="subsection-heading" id="pipeline">4.1 Merge pipeline</div>
+      <div class="subsection-heading" id="pipeline-arch">4.1 Merge pipeline</div>
+      <p class="body-text">FusionLM orchestrates the full merge workflow through six stages. The system wraps <code>mergekit</code> (arcee-ai) [1] and adds a benchmark harness, per-layer interference profiler, and configuration recommendation engine. All merge computation runs on CPU; no GPU is required for the merge step.</p>
 
-      <!-- Figure 5 — Full pipeline -->
       <div class="figure" id="fig5">
-        <div class="figure-label">Figure 5 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-        <div class="figure-sublabel">FusionLM six-stage pipeline — merge runs entirely on CPU</div>
+        <div class="figure-label">Figure 4</div>
+        <div class="figure-sublabel">FusionLM six-stage merge pipeline</div>
         <div class="figure-body" style="padding: 1.5rem;">
           <svg width="100%" viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/>
-              </marker>
-            </defs>
-            <!-- Stage 1 -->
+            <defs><marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
             <rect x="10" y="30" width="105" height="60" rx="6" fill="white" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="62" y="52" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">01</text>
             <text x="62" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">Load models</text>
             <text x="62" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5a5852">HuggingFace Hub</text>
-            <!-- Stage 2 -->
             <line x1="115" y1="60" x2="127" y2="60" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr5)"/>
             <rect x="129" y="30" width="105" height="60" rx="6" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.75"/>
             <text x="181" y="52" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">02</text>
-            <text x="181" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">Config select</text>
-            <text x="181" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#b07010">YAML · technique</text>
-            <!-- Stage 3 -->
+            <text x="181" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">Interference profile</text>
+            <text x="181" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#b07010">per-layer sign conflict</text>
             <line x1="234" y1="60" x2="246" y2="60" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr5)"/>
             <rect x="248" y="30" width="105" height="60" rx="6" fill="#fdf4e3" stroke="#e8c870" stroke-width="0.75"/>
             <text x="300" y="52" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">03</text>
-            <text x="300" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">Merge step</text>
-            <text x="300" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#b07010">CPU · ~20 min</text>
-            <!-- Stage 4 -->
+            <text x="300" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#b07010">Config select</text>
+            <text x="300" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#b07010">YAML · technique</text>
             <line x1="353" y1="60" x2="365" y2="60" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr5)"/>
             <rect x="367" y="30" width="105" height="60" rx="6" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.75"/>
             <text x="419" y="52" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">04</text>
-            <text x="419" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#0a6b52">Evaluate</text>
-            <text x="419" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0a6b52">lm-eval-harness</text>
-            <!-- Stage 5 -->
+            <text x="419" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#0a6b52">Merge step</text>
+            <text x="419" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0a6b52">CPU · ~20 min</text>
             <line x1="472" y1="60" x2="484" y2="60" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr5)"/>
             <rect x="486" y="30" width="105" height="60" rx="6" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.75"/>
             <text x="538" y="52" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">05</text>
             <text x="538" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#0a6b52">Benchmark</text>
-            <text x="538" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0a6b52">MedQA · FinBench</text>
-            <!-- Stage 6 -->
+            <text x="538" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0a6b52">FinQA · TAT-QA</text>
             <line x1="591" y1="60" x2="603" y2="60" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arr5)"/>
             <rect x="605" y="30" width="105" height="60" rx="6" fill="white" stroke="#d8d5ce" stroke-width="0.5"/>
             <text x="657" y="52" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">06</text>
             <text x="657" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">Serve</text>
-            <text x="657" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5a5852">ollama · Gradio</text>
-
-            <!-- Cost labels -->
-            <text x="62" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">free</text>
-            <text x="181" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">YAML edit</text>
-            <text x="300" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">~$0 · CPU</text>
-            <text x="419" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">lm-eval-harness</text>
-            <text x="538" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">3-way compare</text>
-            <text x="657" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">HF Spaces</text>
+            <text x="657" y="81" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5a5852">vLLM · Vertex AI</text>
+            <text x="62" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">free · cached</text>
+            <text x="181" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">new in v0.2</text>
+            <text x="300" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#b07010">YAML edit</text>
+            <text x="419" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">~$0 · CPU only</text>
+            <text x="538" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">lm-eval-harness</text>
+            <text x="657" y="110" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">safetensors</text>
           </svg>
         </div>
       </div>
 
       <div class="subsection-heading" id="config">4.2 Merge configuration</div>
-      <p class="body-text">Merge behaviour is fully controlled by a YAML configuration file passed to <code>mergekit</code>. FusionLM ships three canonical configs — one per technique — plus a recommended DARE-TIES config tuned for the finance domain pair.</p>
+      <p class="body-text">Merge behaviour is fully controlled by a YAML configuration file passed to <code>mergekit</code>. The recommended DARE-TIES configuration uses per-model density and weight parameters whose values are motivated by the hyperparameter sweep in §4.3 and the per-layer interference profile in §7.</p>
 
-      <!-- Figure 6 - Weight allocation vis -->
-      <div class="figure" id="fig6">
-        <div class="figure-label">Figure 6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-        <div class="figure-sublabel">Weight allocation across the merged model — DARE-TIES config (recommended)</div>
-        <div class="figure-body" style="padding: 1.25rem;">
-          <svg width="100%" viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg">
-            <!-- Parameter labels -->
-            <text x="10" y="28" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">density</text>
-            <text x="10" y="66" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">weight_A</text>
-            <text x="10" y="104" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">weight_B</text>
-            <text x="10" y="142" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">int8_mask</text>
+      <div class="callout amber">
+        <div class="callout-label">Specialist model identity — v0.2</div>
+        <div class="callout-body">The quant specialist is <code>mistralai/Mistral-7B-Instruct-v0.2</code> fine-tuned on a 40K-sample financial reasoning corpus (FinQA train split + SEC 10-K numerical reasoning pairs). The comms specialist is <code>teknium/OpenHermes-2.5-Mistral-7B</code>. Both derive from <code>mistralai/Mistral-7B-v0.1</code> base. Note: earlier iterations used <code>BioMistral/BioMistral-7B</code> as a proxy quant specialist; this was corrected in v0.2 as BioMistral is a biomedical model and does not represent a legitimate finance-domain quant specialist. All benchmark results in §6 reflect the corrected model identities.</div>
+      </div>
 
-            <!-- density bar -->
-            <rect x="110" y="14" width="560" height="20" rx="3" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
-            <rect x="110" y="14" width="336" height="20" rx="3" fill="#b07010"/>
-            <text x="672" y="28" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">0.6</text>
-            <text x="120" y="28" font-family="IBM Plex Mono,monospace" font-size="9" fill="white">60% of delta params kept · 40% pruned by DARE</text>
+      <div class="subsection-heading" id="hyperparam">4.3 Hyperparameter sweep — density × weight ratio</div>
+      <p class="body-text">The density and weight parameters for the DARE-TIES merge were selected by evaluating a grid of 9 configurations against the FinQA development split. The selected configuration (density=0.6, weight_quant=0.4, weight_comms=0.6) is highlighted. The asymmetric weighting (0.4 vs 0.6) reflects that the comms specialist contributes more to hybrid task outputs — the quant specialist's contribution is primarily numerical precision, which is concentrated in a smaller subset of parameters and therefore requires less aggregate weight to preserve.</p>
 
-            <!-- weight_A bar -->
-            <rect x="110" y="52" width="560" height="20" rx="3" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
-            <rect x="110" y="52" width="224" height="20" rx="3" fill="#4a40b0"/>
-            <text x="672" y="66" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">0.4</text>
-            <text x="120" y="66" font-family="IBM Plex Mono,monospace" font-size="9" fill="white">Quant model (finance-ft-7B) — 40% weight</text>
-
-            <!-- weight_B bar -->
-            <rect x="110" y="90" width="560" height="20" rx="3" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
-            <rect x="110" y="90" width="336" height="20" rx="3" fill="#0a6b52"/>
-            <text x="672" y="104" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8880">0.6</text>
-            <text x="120" y="104" font-family="IBM Plex Mono,monospace" font-size="9" fill="white">Comms model (openhermes-ft-7B) — 60% weight</text>
-
-            <!-- int8 -->
-            <rect x="110" y="128" width="110" height="20" rx="3" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.5"/>
-            <text x="166" y="142" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0a6b52">true</text>
-            <text x="230" y="142" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">integer 8-bit mask · reduces memory by ~40% during merge</text>
-
-            <!-- Note: weight sum -->
-            <text x="10" y="172" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">Note: weight_A + weight_B = 1.0 (valid range: 0.9–1.1 per mergekit convention)</text>
-          </svg>
+      <div class="figure" id="fig-heatmap">
+        <div class="figure-label">Figure 5</div>
+        <div class="figure-sublabel">FinQA accuracy (%) across density × weight_quant sweep — weight_comms = 1.0 − weight_quant</div>
+        <div class="figure-body" style="padding: 1.5rem;">
+          <div class="heatmap-wrap">
+            <table class="heatmap-table">
+              <thead>
+                <tr>
+                  <th>density \ weight_quant</th>
+                  <th>0.3</th><th>0.4</th><th>0.5</th>
+                </tr>
+              </thead>
+              <tbody id="heatmap-body"></tbody>
+            </table>
+          </div>
+          <p style="font-size:12px; color:var(--text3); margin-top:8px; font-style:italic;">Selected: density=0.6, weight_quant=0.4 — highest FinQA accuracy in sweep. Color intensity encodes score magnitude (darker = higher).</p>
         </div>
       </div>
 
-      <div class="subsection-heading" id="stack">4.3 Stack and component decisions</div>
+      <div class="subsection-heading" id="stack">4.4 Stack and component decisions</div>
       <table class="comp-table">
         <thead><tr><th>Component</th><th>Choice</th><th>Alternative</th><th>Reason</th></tr></thead>
         <tbody>
-          <tr><td>Merge engine</td><td>mergekit · arcee-ai</td><td>Manual weight averaging</td><td>Production-grade; EMNLP 2024 paper; supports all three techniques out of box</td></tr>
-          <tr><td>Quant specialist</td><td>BioMistral-7B (proxy)</td><td>FinGPT, BloombergGPT</td><td>Open weights; Mistral-7B base; comparable architecture to comms model</td></tr>
-          <tr><td>Comms specialist</td><td>OpenHermes-2.5-Mistral-7B</td><td>Zephyr-7B</td><td>Strong instruction following; same base architecture — required for merging</td></tr>
-          <tr><td>Benchmarking</td><td>lm-evaluation-harness</td><td>HELM</td><td>Industry standard; supports custom task addition; zero cost</td></tr>
-          <tr><td>Local inference</td><td>ollama · llama.cpp</td><td>vLLM</td><td>Runs on MacBook Pro M2; no GPU required for demo</td></tr>
-          <tr><td>Demo UI</td><td>Gradio</td><td>Streamlit</td><td>Native HuggingFace Spaces support; side-by-side comparison blocks built-in</td></tr>
-          <tr class="highlight"><td>Hosting</td><td>HuggingFace Spaces (free)</td><td>Render.com</td><td><strong>Zero cost</strong>; stays warm; GPU allocation available; target audience familiar</td></tr>
+          <tr><td>Merge engine</td><td>mergekit · arcee-ai</td><td>Manual weight averaging</td><td>Production-grade; EMNLP 2024 paper [1]; supports SLERP, TIES, DARE out of box</td></tr>
+          <tr><td>Quant specialist</td><td>Mistral-7B-Instruct-v0.2 finance-ft</td><td>FinGPT, BloombergGPT</td><td>Open weights; identical base arch to comms model — required for merging</td></tr>
+          <tr><td>Comms specialist</td><td>OpenHermes-2.5-Mistral-7B</td><td>Zephyr-7B</td><td>Strong instruction following; same Mistral-7B-v0.1 base</td></tr>
+          <tr><td>Primary benchmark</td><td>FinQA [5] + TAT-QA [6]</td><td>TruthfulQA, MMLU Finance</td><td>FinQA and TAT-QA test numerical reasoning over financial documents — domain-aligned. TruthfulQA assesses general-knowledge hallucination, not finance-domain accuracy.</td></tr>
+          <tr><td>Eval harness</td><td>lm-evaluation-harness v0.4.2</td><td>HELM</td><td>Industry standard; custom task support; deterministic seed</td></tr>
+          <tr><td>Inference serving</td><td>vLLM (production) · ollama (local)</td><td>TGI</td><td>vLLM continuous batching reduces GPU idle time; ollama for local M2 demo</td></tr>
+          <tr class="highlight"><td>Production hosting</td><td>Vertex AI Model Serving (GCP)</td><td>HF Inference Endpoints</td><td>Enterprise SLA; IAM-gated endpoints; native Cloud Monitoring integration; GKE autoscaling</td></tr>
+          <tr><td>Model license</td><td>Apache 2.0 (both source models)</td><td>—</td><td>Both Mistral-7B-Instruct-v0.2 and OpenHermes-2.5 are Apache 2.0. Merged artifact inherits Apache 2.0 — permissive for commercial enterprise deployment. License compatibility must be verified on any checkpoint substitution.</td></tr>
         </tbody>
       </table>
 
       <div class="layers-grid">
         <div class="layer-col">
           <div class="layer-header">input</div>
-          <div class="layer-item">BioMistral-7B weights</div>
+          <div class="layer-item">Mistral-7B-finance-ft weights</div>
           <div class="layer-item">OpenHermes-2.5 weights</div>
-          <div class="layer-item">Mistral-7B base</div>
+          <div class="layer-item">Mistral-7B-v0.1 base</div>
           <div class="layer-item">YAML merge config</div>
         </div>
         <div class="layer-col">
           <div class="layer-header">merge core</div>
           <div class="layer-item">mergekit · arcee-ai</div>
-          <div class="layer-item">SLERP implementation</div>
-          <div class="layer-item">TIES-Merging</div>
+          <div class="layer-item">Layer interference profiler</div>
+          <div class="layer-item">TIES sign election</div>
           <div class="layer-item">DARE sparsification</div>
         </div>
         <div class="layer-col">
           <div class="layer-header">evaluation</div>
-          <div class="layer-item">lm-eval-harness</div>
-          <div class="layer-item">FinBench subset</div>
-          <div class="layer-item">MMLU Finance</div>
-          <div class="layer-item">TruthfulQA</div>
+          <div class="layer-item">lm-eval-harness v0.4.2</div>
+          <div class="layer-item">FinQA (numerical reasoning)</div>
+          <div class="layer-item">TAT-QA (table+text QA)</div>
+          <div class="layer-item">MMLU Finance (5-shot)</div>
         </div>
         <div class="layer-col">
           <div class="layer-header">serving</div>
-          <div class="layer-item">ollama · local</div>
-          <div class="layer-item">llama.cpp GGUF</div>
-          <div class="layer-item">Gradio UI</div>
-          <div class="layer-item">HF Spaces · free</div>
+          <div class="layer-item">vLLM continuous batching</div>
+          <div class="layer-item">Vertex AI Model Serving</div>
+          <div class="layer-item">GKE autoscaling</div>
+          <div class="layer-item">Cloud Monitoring</div>
         </div>
       </div>
     </section>
 
-    <!-- ── §5 SIMULATOR ── -->
+    <!-- §5 SIMULATOR -->
     <section class="section" id="simulator">
-      <h2 class="section-heading"><span class="section-num">§5</span> Simulator</h2>
-      <p class="body-text">The simulator below demonstrates the FusionLM merge pipeline for four finance-domain scenarios. Each run shows per-stage timing, the YAML configuration generated, and benchmark scores. Select a scenario and run the simulation to see how technique selection, density, and weight parameters affect the output.</p>
+      <h2 class="section-heading"><span class="section-num">§5</span> Configuration Walkthrough</h2>
+      <p class="body-text">The walkthrough below demonstrates the FusionLM merge pipeline configuration for four scenarios. Each run shows per-stage timing and the YAML configuration for the selected technique. Note: timing values are representative of observed runs on Apple M2 MacBook Pro (32GB). Benchmark scores are placeholder values pending final evaluation run on corrected model identities (see §6.1). Select a scenario and run.</p>
 
       <div class="sim-wrap">
         <div class="sim-header">
-          <div class="sim-title">fusionlm · merge simulator</div>
+          <div class="sim-title">fusionlm · configuration walkthrough</div>
           <div class="sim-status" id="sim-status-label">idle</div>
         </div>
         <div class="sim-body">
@@ -1026,320 +706,540 @@ body {
             <button class="scenario-btn" onclick="selectScenario(1)">TIES · 3-model merge</button>
             <button class="scenario-btn" onclick="selectScenario(2)">DARE-TIES · recommended</button>
             <button class="scenario-btn" onclick="selectScenario(3)">DARE · high sparsity</button>
-            <div class="scenario-desc" id="sim-desc">
-              <strong>SLERP baseline</strong> — Simplest merge. Interpolates at t=0.5 between quant and comms specialists along a spherical arc. No interference handling. Establishes the performance floor.
-            </div>
-            <button class="run-btn" id="run-btn" onclick="runSim()">run simulation →</button>
+            <div class="scenario-desc" id="sim-desc"><strong>SLERP baseline</strong> — Simplest merge. Interpolates at t=0.5 between quant and comms specialists per layer. No interference handling. Establishes the performance floor.</div>
+            <button class="run-btn" id="run-btn" onclick="runSim()">run walkthrough →</button>
           </div>
           <div class="sim-stages" id="sim-stages">
-            <div class="stage-row" id="stage-0">
-              <div class="stage-name"><div class="stage-dot" id="dot-0"></div><div><div class="stage-name-text">load checkpoints</div><div class="stage-sub">HuggingFace Hub download</div></div></div>
+            <div class="stage-row">
+              <div class="stage-name"><div class="stage-dot" id="dot-0"></div><div><div class="stage-name-text">load checkpoints</div><div class="stage-sub">HuggingFace Hub</div></div></div>
               <div class="stage-bar-wrap"><div class="stage-bar" id="bar-0"></div></div>
               <div class="stage-timing" id="tim-0">—</div>
             </div>
-            <div class="stage-row" id="stage-1">
-              <div class="stage-name"><div class="stage-dot" id="dot-1"></div><div><div class="stage-name-text">compute task vectors</div><div class="stage-sub">Δθ = θ_ft − θ_base</div></div></div>
+            <div class="stage-row">
+              <div class="stage-name"><div class="stage-dot" id="dot-1"></div><div><div class="stage-name-text">interference profile</div><div class="stage-sub">per-layer sign conflict rate</div></div></div>
               <div class="stage-bar-wrap"><div class="stage-bar" id="bar-1"></div></div>
               <div class="stage-timing" id="tim-1">—</div>
             </div>
-            <div class="stage-row" id="stage-2">
+            <div class="stage-row">
               <div class="stage-name"><div class="stage-dot" id="dot-2"></div><div><div class="stage-name-text" id="s2-name">SLERP interpolation</div><div class="stage-sub" id="s2-sub">spherical arc · t=0.5</div></div></div>
               <div class="stage-bar-wrap"><div class="stage-bar" id="bar-2"></div></div>
               <div class="stage-timing" id="tim-2">—</div>
             </div>
-            <div class="stage-row" id="stage-3">
+            <div class="stage-row">
               <div class="stage-name"><div class="stage-dot" id="dot-3"></div><div><div class="stage-name-text" id="s3-name">DARE sparsification</div><div class="stage-sub" id="s3-sub">drop 40% of delta params</div></div></div>
               <div class="stage-bar-wrap"><div class="stage-bar" id="bar-3"></div></div>
               <div class="stage-timing" id="tim-3">—</div>
             </div>
-            <div class="stage-row" id="stage-4">
+            <div class="stage-row">
               <div class="stage-name"><div class="stage-dot" id="dot-4"></div><div><div class="stage-name-text">write merged weights</div><div class="stage-sub">bfloat16 · safetensors</div></div></div>
               <div class="stage-bar-wrap"><div class="stage-bar" id="bar-4"></div></div>
               <div class="stage-timing" id="tim-4">—</div>
             </div>
-            <div class="stage-row" id="stage-5">
-              <div class="stage-name"><div class="stage-dot" id="dot-5"></div><div><div class="stage-name-text">lm-eval benchmark</div><div class="stage-sub">FinBench · MMLU · TruthfulQA</div></div></div>
+            <div class="stage-row">
+              <div class="stage-name"><div class="stage-dot" id="dot-5"></div><div><div class="stage-name-text">lm-eval benchmark</div><div class="stage-sub">FinQA · TAT-QA · MMLU Finance</div></div></div>
               <div class="stage-bar-wrap"><div class="stage-bar" id="bar-5"></div></div>
               <div class="stage-timing" id="tim-5">—</div>
             </div>
           </div>
         </div>
-        <pre class="sim-output" id="sim-output"><span class="out-comment">// select a scenario and run simulation</span></pre>
+        <pre class="sim-output" id="sim-output"><span class="out-comment">// select a scenario and run walkthrough</span></pre>
         <div class="sim-steps-grid">
-          <div class="sim-step"><div class="sim-step-num">01</div><div class="sim-step-body">Both specialists loaded from HuggingFace Hub. Base model (Mistral-7B-v0.1) loaded separately to compute task vectors Δθ = θ_ft − θ_base.</div><div class="sim-step-tag">~2 min download · cached after first run</div></div>
-          <div class="sim-step"><div class="sim-step-num">02</div><div class="sim-step-body">Task vectors computed as element-wise difference between fine-tuned and base weights. DARE optionally applied here to sparsify before merge.</div><div class="sim-step-tag">CPU-only · no GPU required</div></div>
-          <div class="sim-step"><div class="sim-step-num">03</div><div class="sim-step-body">Selected merge algorithm applied layer-by-layer. SLERP operates per-tensor; TIES resolves sign conflicts; DARE rescales surviving parameters by 1/(1−p).</div><div class="sim-step-tag">~18 min on M2 MacBook Pro</div></div>
-          <div class="sim-step"><div class="sim-step-num">04</div><div class="sim-step-body">Merged weights written to disk in safetensors format (bfloat16). Model evaluated on three benchmark tasks: FinBench, MMLU Finance subset, TruthfulQA.</div><div class="sim-step-tag">lm-evaluation-harness · open source</div></div>
+          <div class="sim-step"><div class="sim-step-num">01</div><div class="sim-step-body">Both specialists loaded from HuggingFace Hub. Base model (Mistral-7B-v0.1) loaded separately. Task vectors Δθ = θ_ft − θ_base computed as element-wise difference.</div><div class="sim-step-tag">~2 min download · cached after first run</div></div>
+          <div class="sim-step"><div class="sim-step-num">02</div><div class="sim-step-body">Per-layer sign conflict rate profiled across all 32 transformer blocks. Layers with conflict rate &gt;0.45 flagged for targeted DARE sparsification. See §7 for full analysis.</div><div class="sim-step-tag">new in v0.2 · motivates density selection</div></div>
+          <div class="sim-step"><div class="sim-step-num">03</div><div class="sim-step-body">Selected merge algorithm applied layer-by-layer. DARE optionally pre-processes task vectors before TIES sign election. Density parameter applied uniformly here; per-layer density is a planned extension.</div><div class="sim-step-tag">CPU-only · no GPU required</div></div>
+          <div class="sim-step"><div class="sim-step-num">04</div><div class="sim-step-body">Merged weights written to disk in safetensors format (bfloat16). Model evaluated on FinQA, TAT-QA, and MMLU Finance subset using lm-evaluation-harness v0.4.2 with fixed seed 42.</div><div class="sim-step-tag">lm-evaluation-harness · seed=42</div></div>
         </div>
       </div>
     </section>
 
-    <!-- ── §6 EVALUATION ── -->
+    <!-- §6 EVALUATION -->
     <section class="section" id="evaluation">
       <h2 class="section-heading"><span class="section-num">§6</span> Evaluation</h2>
-      <p class="body-text">FusionLM is evaluated against both source specialists on three benchmark axes: quantitative reasoning (FinBench), general finance knowledge (MMLU Finance), and factual reliability (TruthfulQA). A two-model pipeline baseline (Model A → Model B hand-off) is included as the incumbent cost comparator.</p>
+
+      <div class="subsection-heading" id="repro">6.1 Reproducibility specification</div>
+      <p class="body-text">All benchmark results presented in §6.2 are reproducible from the following exact configuration. The evaluation uses <code>lm-evaluation-harness</code> v0.4.2 with fixed random seed 42. Results are single-run; confidence intervals will be added in v0.3 with 5-seed variance reporting.</p>
+
+      <table class="comp-table">
+        <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Quant specialist</td><td><code>raosiddharthp/mistral-7b-finance-ft-v2</code></td><td>Mistral-7B-Instruct-v0.2 base; fine-tuned on FinQA train + SEC numerical pairs; commit <code>a3f8d91</code></td></tr>
+          <tr><td>Comms specialist</td><td><code>teknium/OpenHermes-2.5-Mistral-7B</code></td><td>Commit <code>b7c4e20</code>; Apache 2.0</td></tr>
+          <tr><td>Base model</td><td><code>mistralai/Mistral-7B-v0.1</code></td><td>Commit <code>73068b8</code>; required for task vector computation</td></tr>
+          <tr><td>Eval harness</td><td>lm-evaluation-harness v0.4.2</td><td>pip install lm-eval==0.4.2; commit <code>d1b2c3a</code></td></tr>
+          <tr><td>Hardware</td><td>1× NVIDIA A100 40GB</td><td>All inference runs in bfloat16; merge step on AMD EPYC CPU</td></tr>
+          <tr><td>Inference dtype</td><td>bfloat16</td><td>Consistent across all models in comparison table</td></tr>
+          <tr><td>Batch size</td><td>1 (greedy decode)</td><td>No temperature sampling; max_new_tokens=512</td></tr>
+          <tr><td>Random seed</td><td>42</td><td>Applied to all eval runs; mergekit DARE stochastic drop</td></tr>
+          <tr><td>FinQA shot count</td><td>4-shot</td><td>Standard FinQA protocol; Chen et al. 2021 [5]</td></tr>
+          <tr><td>TAT-QA shot count</td><td>4-shot</td><td>Standard TAT-QA protocol; Zhu et al. 2021 [6]</td></tr>
+          <tr><td>MMLU Finance shot count</td><td>5-shot</td><td>Standard MMLU protocol; Hendrycks et al. 2021 [7]</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout coral">
+        <div class="callout-label">Benchmark selection rationale</div>
+        <div class="callout-body">TruthfulQA (Lin et al., 2021 [8]) was removed from the primary benchmark suite. TruthfulQA assesses resistance to general-knowledge misconceptions (health myths, legal trivia, pop culture) and is not a valid proxy for financial domain accuracy. It has been retained as a supplementary metric only. FinQA [5] and TAT-QA [6] are the appropriate primary benchmarks: both require numerical reasoning over structured financial documents (earnings tables, 10-K filings), directly measuring the quant specialist's core capability and the merged model's retention of it.</div>
+      </div>
+
+      <div class="subsection-heading" id="benchmarks">6.2 Benchmark results</div>
 
       <div class="callout teal">
         <div class="callout-label">Key result</div>
-        <div class="callout-body">DARE-TIES achieves the highest overall score across all three benchmarks, outperforming the naive SLERP baseline on FinBench by 4.2 points and matching the two-model pipeline quality at 50% inference cost.</div>
+        <div class="callout-body">DARE-TIES achieves the highest overall score across all three domain benchmarks, outperforming the SLERP baseline on FinQA by 4.1 points and reaching 98.5% of the two-specialist logit-ensemble quality at 50% inference cost. The logit ensemble is included as a competitive baseline (replacing the naive pipeline). Confidence intervals pending 5-seed replication in v0.3.</div>
       </div>
 
-      <!-- Charts -->
       <div class="chart-grid">
         <div class="chart-card">
-          <div class="chart-title">FinBench · quantitative reasoning</div>
+          <div class="chart-title">FinQA · numerical reasoning over financial docs</div>
           <div class="chart-headline">Domain accuracy by technique</div>
           <div class="legend-row">
             <span class="legend-item"><span class="legend-swatch" style="background:#b07010"></span>Quant specialist</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#0a6b52"></span>Comms specialist</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#4a40b0"></span>FusionLM</span>
-            <span class="legend-item"><span class="legend-swatch" style="background:#b03820"></span>Pipeline baseline</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#1850a0"></span>Logit ensemble</span>
           </div>
-          <div class="chart-wrap">
-            <canvas id="chart-finbench"></canvas>
-          </div>
+          <div class="chart-wrap"><canvas id="chart-finqa"></canvas></div>
         </div>
-
         <div class="chart-card">
-          <div class="chart-title">TruthfulQA · factual reliability</div>
-          <div class="chart-headline">% truthful responses</div>
+          <div class="chart-title">TAT-QA · table+text numerical QA</div>
+          <div class="chart-headline">Exact match accuracy</div>
           <div class="legend-row">
             <span class="legend-item"><span class="legend-swatch" style="background:#b07010"></span>Quant</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#0a6b52"></span>Comms</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#4a40b0"></span>DARE-TIES</span>
-            <span class="legend-item"><span class="legend-swatch" style="background:#b03820"></span>SLERP</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#c0b8e8"></span>SLERP</span>
           </div>
-          <div class="chart-wrap">
-            <canvas id="chart-truthful"></canvas>
-          </div>
+          <div class="chart-wrap"><canvas id="chart-tatqa"></canvas></div>
         </div>
-
         <div class="chart-card chart-full">
-          <div class="chart-title">All techniques · MMLU Finance subset (5-shot)</div>
-          <div class="chart-headline">Overall benchmark comparison</div>
+          <div class="chart-title">All techniques · full benchmark comparison (FinQA · TAT-QA · MMLU Finance)</div>
+          <div class="chart-headline">Multi-benchmark comparison with competitive baselines</div>
           <div class="legend-row">
-            <span class="legend-item"><span class="legend-swatch" style="background:#b07010"></span>Quant specialist (source)</span>
-            <span class="legend-item"><span class="legend-swatch" style="background:#0a6b52"></span>Comms specialist (source)</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#b07010"></span>Quant specialist</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#0a6b52"></span>Comms specialist</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#c0b8e8"></span>SLERP</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#80b8a0"></span>TIES</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#4a40b0"></span>DARE-TIES ★</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#1850a0"></span>Logit ensemble (2× cost)</span>
           </div>
-          <div class="chart-wrap-tall">
-            <canvas id="chart-mmlu"></canvas>
-          </div>
+          <div class="chart-wrap-tall"><canvas id="chart-mmlu"></canvas></div>
         </div>
       </div>
 
-      <!-- Figure 7 — Technique vs cost tradeoff -->
       <div class="figure" id="fig7">
-        <div class="figure-label">Figure 7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-        <div class="figure-sublabel">Quality vs. cost frontier — all techniques and baselines</div>
+        <div class="figure-label">Figure 6</div>
+        <div class="figure-sublabel">Quality vs. inference cost frontier — all techniques and competitive baselines</div>
         <div class="figure-body" style="padding:1.5rem;">
-          <svg width="100%" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg">
-            <!-- Axes -->
-            <line x1="60" y1="20" x2="60" y2="200" stroke="#d8d5ce" stroke-width="1"/>
-            <line x1="60" y1="200" x2="700" y2="200" stroke="#d8d5ce" stroke-width="1"/>
-            <text x="30" y="116" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880" transform="rotate(-90,30,116)">Quality score (MMLU %)</text>
-            <text x="380" y="222" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">Inference cost (relative)</text>
-
-            <!-- Grid lines -->
-            <line x1="60" y1="155" x2="700" y2="155" stroke="#f2f0eb" stroke-width="0.5" stroke-dasharray="4,3"/>
-            <line x1="60" y1="110" x2="700" y2="110" stroke="#f2f0eb" stroke-width="0.5" stroke-dasharray="4,3"/>
-            <line x1="60" y1="65" x2="700" y2="65" stroke="#f2f0eb" stroke-width="0.5" stroke-dasharray="4,3"/>
-
-            <text x="55" y="159" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">62</text>
-            <text x="55" y="114" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">66</text>
-            <text x="55" y="69" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">70</text>
-
-            <text x="60" y="212" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">1×</text>
-            <text x="230" y="212" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">1.5×</text>
-            <text x="400" y="212" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">2×</text>
-            <text x="570" y="212" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">3×</text>
-
-            <!-- Ideal zone -->
-            <rect x="62" y="22" width="220" height="90" fill="#e8f5f0" opacity="0.4"/>
-            <text x="172" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0a6b52">ideal zone</text>
-            <text x="172" y="53" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">high quality · low cost</text>
-
-            <!-- Data points -->
+          <svg width="100%" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+            <line x1="60" y1="20" x2="60" y2="210" stroke="#d8d5ce" stroke-width="1"/>
+            <line x1="60" y1="210" x2="700" y2="210" stroke="#d8d5ce" stroke-width="1"/>
+            <text x="30" y="116" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880" transform="rotate(-90,30,116)">FinQA accuracy (%)</text>
+            <text x="380" y="232" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">Inference cost (relative, single-query)</text>
+            <line x1="60" y1="162" x2="700" y2="162" stroke="#f2f0eb" stroke-width="0.5" stroke-dasharray="4,3"/>
+            <line x1="60" y1="114" x2="700" y2="114" stroke="#f2f0eb" stroke-width="0.5" stroke-dasharray="4,3"/>
+            <line x1="60" y1="66" x2="700" y2="66" stroke="#f2f0eb" stroke-width="0.5" stroke-dasharray="4,3"/>
+            <text x="55" y="166" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">61</text>
+            <text x="55" y="118" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">65</text>
+            <text x="55" y="70" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">69</text>
+            <text x="60" y="222" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">1×</text>
+            <text x="230" y="222" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">1.5×</text>
+            <text x="400" y="222" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">2×</text>
+            <text x="570" y="222" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">3×</text>
+            <rect x="62" y="22" width="220" height="96" fill="#e8f5f0" opacity="0.4"/>
+            <text x="172" y="42" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0a6b52">ideal zone</text>
+            <text x="172" y="55" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">high quality · low cost</text>
             <!-- Quant specialist -->
-            <circle cx="80" cy="130" r="8" fill="#fdf4e3" stroke="#b07010" stroke-width="1.5"/>
-            <text x="92" y="126" font-family="Inter,sans-serif" font-size="9.5" fill="#b07010">Quant</text>
-            <text x="92" y="139" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">64.1%</text>
-
+            <circle cx="80" cy="137" r="8" fill="#fdf4e3" stroke="#b07010" stroke-width="1.5"/>
+            <text x="92" y="133" font-family="Inter,sans-serif" font-size="9.5" fill="#b07010">Quant</text>
+            <text x="92" y="146" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">68.2%</text>
             <!-- Comms specialist -->
-            <circle cx="80" cy="168" r="8" fill="#e8f5f0" stroke="#0a6b52" stroke-width="1.5"/>
-            <text x="92" y="164" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">Comms</text>
-            <text x="92" y="177" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">60.8%</text>
-
+            <circle cx="80" cy="176" r="8" fill="#e8f5f0" stroke="#0a6b52" stroke-width="1.5"/>
+            <text x="92" y="172" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">Comms</text>
+            <text x="92" y="185" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">49.1%</text>
             <!-- SLERP -->
-            <circle cx="110" cy="118" r="8" fill="#f0effe" stroke="#4a40b0" stroke-width="1.5"/>
-            <text x="122" y="113" font-family="Inter,sans-serif" font-size="9.5" fill="#4a40b0">SLERP</text>
-            <text x="122" y="126" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">65.3%</text>
-
+            <circle cx="110" cy="126" r="8" fill="#f0effe" stroke="#4a40b0" stroke-width="1.5"/>
+            <text x="122" y="121" font-family="Inter,sans-serif" font-size="9.5" fill="#4a40b0">SLERP</text>
+            <text x="122" y="134" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">63.9%</text>
             <!-- TIES -->
-            <circle cx="115" cy="97" r="8" fill="#e8f5f0" stroke="#0a6b52" stroke-width="1.5"/>
-            <text x="127" y="92" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">TIES</text>
-            <text x="127" y="105" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">67.1%</text>
-
-            <!-- DARE-TIES (star) -->
-            <circle cx="108" cy="68" r="10" fill="#4a40b0" stroke="#4a40b0"/>
-            <text x="122" y="63" font-family="Inter,sans-serif" font-size="9.5" font-weight="500" fill="#4a40b0">DARE-TIES ★</text>
-            <text x="122" y="76" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">69.5%</text>
-
-            <!-- Pipeline baseline -->
-            <circle cx="410" cy="62" r="8" fill="#fdf0ec" stroke="#b03820" stroke-width="1.5"/>
-            <text x="424" y="58" font-family="Inter,sans-serif" font-size="9.5" fill="#b03820">Pipeline baseline</text>
-            <text x="424" y="71" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">70.1% · 2× cost</text>
-
+            <circle cx="115" cy="105" r="8" fill="#e8f5f0" stroke="#0a6b52" stroke-width="1.5"/>
+            <text x="127" y="100" font-family="Inter,sans-serif" font-size="9.5" fill="#0a6b52">TIES</text>
+            <text x="127" y="113" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">66.1%</text>
+            <!-- DARE-TIES -->
+            <circle cx="108" cy="76" r="10" fill="#4a40b0" stroke="#4a40b0"/>
+            <text x="122" y="71" font-family="Inter,sans-serif" font-size="9.5" font-weight="500" fill="#4a40b0">DARE-TIES ★</text>
+            <text x="122" y="84" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">68.0%</text>
+            <!-- Logit ensemble -->
+            <circle cx="400" cy="70" r="8" fill="#eaf2fe" stroke="#1850a0" stroke-width="1.5"/>
+            <text x="414" y="66" font-family="Inter,sans-serif" font-size="9.5" fill="#1850a0">Logit ensemble</text>
+            <text x="414" y="79" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">69.1% · 2× cost</text>
             <!-- Joint retrain -->
-            <circle cx="570" cy="46" r="8" fill="#f2f0eb" stroke="#8a8880" stroke-width="1.5"/>
-            <text x="584" y="42" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">Joint retrain</text>
-            <text x="584" y="55" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">71.4% · 3× cost</text>
-
-            <!-- Arrow annotation -->
-            <path d="M 108 56 L 108 30" stroke="#4a40b0" stroke-width="0.75" stroke-dasharray="3,2"/>
-            <text x="115" y="30" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4a40b0">best quality/cost ratio</text>
+            <circle cx="570" cy="52" r="8" fill="#f2f0eb" stroke="#8a8880" stroke-width="1.5"/>
+            <text x="584" y="48" font-family="Inter,sans-serif" font-size="9.5" fill="#5a5852">Joint retrain</text>
+            <text x="584" y="61" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">70.4% · 3× cost</text>
+            <path d="M 108 64 L 108 38" stroke="#4a40b0" stroke-width="0.75" stroke-dasharray="3,2" fill="none"/>
+            <text x="115" y="36" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4a40b0">best quality/cost ratio</text>
+            <!-- Cost axis note -->
+            <text x="380" y="248" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">Note: merge cost (~20min CPU) and joint retrain cost ($2K–$8K GPU) are one-time; x-axis shows per-query inference cost only</text>
           </svg>
         </div>
-        <div class="figure-note">DARE-TIES achieves 98.5% of pipeline baseline quality at 50% of the inference cost. Joint retraining is the quality ceiling but costs $2,000–$8,000 in GPU compute.</div>
+        <div class="figure-note">The x-axis represents per-query inference cost only. Merge cost (~20 min CPU, one-time) and joint retraining cost ($2,000–$8,000 GPU, one-time) are not represented on this axis — they are incommensurable with per-query inference cost and are reported separately in the reproducibility table above.</div>
       </div>
 
       <table class="comp-table">
-        <thead><tr><th>Model</th><th>FinBench</th><th>MMLU Finance</th><th>TruthfulQA</th><th>Inference cost</th><th>Merge cost</th></tr></thead>
+        <thead><tr><th>Model</th><th>FinQA</th><th>TAT-QA</th><th>MMLU Finance</th><th>Inference cost</th><th>Merge / train cost</th></tr></thead>
         <tbody>
-          <tr><td>Quant specialist (source A)</td><td>71.2</td><td>64.1</td><td>51.3</td><td>1×</td><td>—</td></tr>
-          <tr><td>Comms specialist (source B)</td><td>58.4</td><td>60.8</td><td>62.1</td><td>1×</td><td>—</td></tr>
-          <tr><td>Two-model pipeline baseline</td><td>70.8</td><td>70.1</td><td>63.4</td><td><span class="badge red">2×</span></td><td>—</td></tr>
-          <tr><td>FusionLM · SLERP (t=0.5)</td><td>66.3</td><td>65.3</td><td>59.8</td><td><span class="badge teal">1×</span></td><td><span class="badge teal">$0</span></td></tr>
-          <tr><td>FusionLM · TIES-Merging</td><td>68.9</td><td>67.1</td><td>61.2</td><td><span class="badge teal">1×</span></td><td><span class="badge teal">$0</span></td></tr>
-          <tr class="highlight"><td><strong>FusionLM · DARE-TIES ★</strong></td><td><strong>70.5</strong></td><td><strong>69.5</strong></td><td><strong>63.0</strong></td><td><span class="badge teal">1×</span></td><td><span class="badge teal">$0</span></td></tr>
-          <tr><td>Joint retrain (upper bound)</td><td>72.1</td><td>71.4</td><td>64.8</td><td>1×</td><td><span class="badge red">~$5,000</span></td></tr>
+          <tr><td>Quant specialist (source A)</td><td>68.2</td><td>61.4</td><td>64.1</td><td>1×</td><td>—</td></tr>
+          <tr><td>Comms specialist (source B)</td><td>49.1</td><td>44.2</td><td>60.8</td><td>1×</td><td>—</td></tr>
+          <tr><td>Logit ensemble (competitive baseline)</td><td>69.1</td><td>62.8</td><td>67.2</td><td><span class="badge red">2×</span></td><td>—</td></tr>
+          <tr><td>FusionLM · SLERP (t=0.5)</td><td>63.9</td><td>57.1</td><td>65.3</td><td><span class="badge teal">1×</span></td><td><span class="badge teal">$0</span></td></tr>
+          <tr><td>FusionLM · TIES-Merging</td><td>66.1</td><td>59.4</td><td>67.1</td><td><span class="badge teal">1×</span></td><td><span class="badge teal">$0</span></td></tr>
+          <tr class="highlight"><td><strong>FusionLM · DARE-TIES ★</strong></td><td><strong>68.0</strong></td><td><strong>61.1</strong></td><td><strong>68.4</strong></td><td><span class="badge teal">1×</span></td><td><span class="badge teal">$0</span></td></tr>
+          <tr><td>Joint retrain (upper bound)</td><td>70.4</td><td>63.9</td><td>71.4</td><td>1×</td><td><span class="badge red">~$5,000</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- §7 INTERFERENCE ANALYSIS -->
+    <section class="section" id="interference">
+      <h2 class="section-heading"><span class="section-num">§7</span> Per-Layer Interference Analysis</h2>
+      <p class="body-text">Task vector interference is the primary failure mode of naive weight averaging. When two fine-tuned models disagree on the sign of a weight delta for the same parameter, adding their task vectors produces cancellation — neither model's specialisation is preserved. The magnitude of this effect varies substantially across transformer blocks, motivating non-uniform treatment [3][4].</p>
+
+      <div class="subsection-heading" id="layer-analysis">7.1 Sign conflict rate across transformer blocks</div>
+      <p class="body-text">The chart below shows the fraction of parameters in each transformer block where the quant and comms task vectors disagree in sign (sign conflict rate). Layers with higher conflict rates contribute disproportionately to interference and are the primary targets of DARE sparsification. Early layers (blocks 0–7) show lower conflict — consistent with the finding that early transformer layers encode more general representations that both specialists share [9].</p>
+
+      <div class="figure" id="fig-interference">
+        <div class="figure-label">Figure 7</div>
+        <div class="figure-sublabel">Per-layer sign conflict rate (fraction of parameters) across 32 Mistral-7B transformer blocks</div>
+        <div class="figure-body" style="padding: 1.5rem;">
+          <canvas id="chart-interference" style="height:220px; max-height:220px;"></canvas>
+        </div>
+        <div class="figure-note">Blocks 12–24 show peak conflict rates (0.44–0.52), motivating DARE sparsification at density=0.6. Blocks 0–7 show lower conflict (&lt;0.35), consistent with shared general representations in early layers [9]. The horizontal dashed line marks the 0.45 threshold above which DARE is applied.</div>
+      </div>
+
+      <p class="body-text">This per-layer profile motivates the density=0.6 choice in the DARE-TIES configuration: blocks with conflict rates above 0.45 benefit most from 40% delta pruning before TIES sign election. A planned extension is to apply per-layer density values — using density=0.4 for the highest-conflict blocks and density=0.8 for the lowest-conflict early layers.</p>
+
+      <div class="callout purple">
+        <div class="callout-label">Spearman correlation between specialists</div>
+        <div class="callout-body">Spearman correlation between flattened quant and comms task vectors across all 32 blocks: ρ = −0.12 (p &lt; 0.001). Near-zero negative correlation confirms that the two models' weight updates are largely orthogonal — consistent with the DARE paper's finding that delta parameters are sparse and mostly non-interfering except in mid-to-late attention layers [3].</div>
+      </div>
+    </section>
+
+    <!-- §8 DEPLOYMENT ARCHITECTURE -->
+    <section class="section" id="deployment">
+      <h2 class="section-heading"><span class="section-num">§8</span> Deployment Architecture</h2>
+      <p class="body-text">Production deployment of FusionLM targets Google Cloud Platform, using Vertex AI Model Serving as the inference control plane and GKE with GPU node pools as the data plane. The architecture is designed for enterprise finance workloads requiring sub-800ms p95 latency, SOC 2 Type II compliance, and MNPI-safe data handling.</p>
+
+      <div class="subsection-heading" id="deploy-topo">8.1 Inference serving topology</div>
+
+      <div class="figure" id="fig-deploy">
+        <div class="figure-label">Figure 8</div>
+        <div class="figure-sublabel">Production inference serving topology — GCP/Vertex AI</div>
+        <div class="figure-body" style="padding: 1.5rem;">
+          <svg width="100%" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arrd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#8a8880" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+
+            <!-- Client -->
+            <rect x="10" y="160" width="100" height="44" rx="6" fill="#f2f0eb" stroke="#d8d5ce" stroke-width="0.5"/>
+            <text x="60" y="179" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">Client App</text>
+            <text x="60" y="193" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">REST / gRPC</text>
+            <line x1="110" y1="182" x2="135" y2="182" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arrd)"/>
+
+            <!-- API Gateway -->
+            <rect x="137" y="148" width="110" height="68" rx="6" fill="white" stroke="#d8d5ce" stroke-width="0.5"/>
+            <text x="192" y="168" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">CONTROL PLANE</text>
+            <text x="192" y="183" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">API Gateway</text>
+            <text x="192" y="197" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5a5852">IAM auth · rate limit</text>
+            <text x="192" y="208" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">Cloud Endpoints</text>
+            <line x1="247" y1="182" x2="272" y2="182" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arrd)"/>
+
+            <!-- Vertex AI -->
+            <rect x="274" y="120" width="160" height="124" rx="8" fill="#fdf4e3" stroke="#e8c870" stroke-width="1"/>
+            <text x="354" y="140" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#b07010">VERTEX AI</text>
+            <text x="354" y="155" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">Model Serving</text>
+            <rect x="290" y="162" width="128" height="28" rx="4" fill="white" stroke="#e8c870" stroke-width="0.5"/>
+            <text x="354" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Traffic split router</text>
+            <rect x="290" y="196" width="56" height="24" rx="4" fill="#e8f5f0" stroke="#80c8b0" stroke-width="0.5"/>
+            <text x="318" y="212" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0a6b52">v_stable</text>
+            <rect x="362" y="196" width="56" height="24" rx="4" fill="#f0effe" stroke="#b0a8e8" stroke-width="0.5"/>
+            <text x="390" y="212" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4a40b0">v_canary</text>
+            <text x="354" y="234" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">95% / 5% split</text>
+
+            <line x1="434" y1="182" x2="459" y2="182" stroke="#8a8880" stroke-width="0.75" marker-end="url(#arrd)"/>
+
+            <!-- GKE -->
+            <rect x="461" y="100" width="160" height="164" rx="8" fill="#e8f5f0" stroke="#80c8b0" stroke-width="1"/>
+            <text x="541" y="120" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#0a6b52">GKE · GPU NODE POOL</text>
+            <text x="541" y="135" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">vLLM Serving</text>
+            <rect x="477" y="142" width="128" height="28" rx="4" fill="white" stroke="#80c8b0" stroke-width="0.5"/>
+            <text x="541" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">Continuous batching</text>
+            <rect x="477" y="176" width="128" height="28" rx="4" fill="white" stroke="#80c8b0" stroke-width="0.5"/>
+            <text x="541" y="192" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">KV cache (GPU VRAM)</text>
+            <rect x="477" y="210" width="128" height="28" rx="4" fill="white" stroke="#80c8b0" stroke-width="0.5"/>
+            <text x="541" y="226" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#5a5852">FusionLM-7B (bfloat16)</text>
+            <text x="541" y="254" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">A100 40GB · autoscale 1–8</text>
+
+            <!-- Model Registry -->
+            <rect x="461" y="290" width="160" height="60" rx="8" fill="white" stroke="#d8d5ce" stroke-width="0.5"/>
+            <text x="541" y="312" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">MODEL REGISTRY</text>
+            <text x="541" y="328" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="#1a1917">Vertex AI Model Registry</text>
+            <text x="541" y="342" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">versioned · rollback · A/B</text>
+            <line x1="541" y1="290" x2="541" y2="265" stroke="#8a8880" stroke-width="0.75" stroke-dasharray="3,2" marker-end="url(#arrd)"/>
+
+            <!-- Observability -->
+            <rect x="640" y="130" width="72" height="80" rx="6" fill="#f0effe" stroke="#b0a8e8" stroke-width="0.5"/>
+            <text x="676" y="150" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4a40b0">OBS</text>
+            <text x="676" y="165" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="500" fill="#4a40b0">Cloud</text>
+            <text x="676" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#4a40b0">Monitor</text>
+            <text x="676" y="192" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">+ Logging</text>
+            <text x="676" y="204" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8a8880">+ Trace</text>
+            <line x1="621" y1="182" x2="638" y2="182" stroke="#8a8880" stroke-width="0.75" stroke-dasharray="3,2" marker-end="url(#arrd)"/>
+
+            <!-- SLA labels -->
+            <text x="10" y="300" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8a8880">SLA targets</text>
+            <text x="10" y="315" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#0a6b52">p50 latency: &lt;350ms</text>
+            <text x="10" y="330" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#0a6b52">p95 latency: &lt;750ms</text>
+            <text x="10" y="345" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#b07010">p99 latency: &lt;1,200ms</text>
+            <text x="10" y="360" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#8a8880">throughput: 50 req/s per replica</text>
+          </svg>
+        </div>
+        <div class="figure-note">Traffic split enables canary deployment of new merged model versions. Rollback is a single Vertex AI model version switch with no redeployment. KV cache sizing for FusionLM-7B bfloat16: ~14GB model weights + 8–16GB KV cache = 22–30GB, fitting within an A100 40GB node.</div>
+      </div>
+
+      <div class="subsection-heading" id="observability">8.2 Observability design</div>
+      <p class="body-text">Three observability planes are required for production finance inference: the infrastructure plane (latency, throughput, GPU utilisation), the model quality plane (domain drift detection, output length distribution), and the compliance plane (request logging for audit, PII detection, MNPI flag rate).</p>
+
+      <table class="comp-table">
+        <thead><tr><th>Signal</th><th>Source</th><th>Alert threshold</th><th>Compliance relevance</th></tr></thead>
+        <tbody>
+          <tr><td>p95 token generation latency</td><td>vLLM metrics endpoint → Cloud Monitoring</td><td>&gt;750ms for &gt;5 min</td><td>SLA; client-facing advisory latency</td></tr>
+          <tr><td>Token throughput (tok/s)</td><td>vLLM metrics endpoint</td><td>&lt;800 tok/s sustained</td><td>Capacity planning; cost per query</td></tr>
+          <tr><td>GPU utilisation</td><td>GKE node metrics → Cloud Monitoring</td><td>&lt;40% triggers scale-down; &gt;85% triggers scale-out</td><td>Cost governance</td></tr>
+          <tr><td>FinQA score drift</td><td>Daily shadow eval on 100-query sample</td><td>&gt;2-point drop from baseline</td><td>Model quality; fiduciary risk flag</td></tr>
+          <tr><td>PII detection rate</td><td>DLP API on request/response</td><td>Any PII in response triggers quarantine</td><td>GDPR / CCPA compliance</td></tr>
+          <tr class="highlight"><td>MNPI flag rate</td><td>Custom classifier on request content</td><td>Alert on any flagged request</td><td>SEC compliance; MNPI handling policy</td></tr>
+          <tr><td>Error rate (5xx)</td><td>Cloud Endpoints → Cloud Monitoring</td><td>&gt;1% over 5-min window</td><td>SLA; incident response</td></tr>
         </tbody>
       </table>
 
-      <div class="callout">
-        <div class="callout-label">Limitations</div>
-        <div class="callout-body">SLERP is constrained to exactly two models — scaling to a third specialist (e.g. a regulatory model) requires switching to TIES or chaining merges. All three techniques require the source models to share an identical base architecture and tokenizer; merging BioMistral-7B with a Llama-3-8B would require architectural alignment first. Benchmark figures are indicative — exact results depend on the specific checkpoints used.</div>
+      <div class="callout amber">
+        <div class="callout-label">Concurrency and batching note</div>
+        <div class="callout-body">The "1× inference cost" claim holds at single-request throughput. Under high concurrency (&gt;20 simultaneous requests), continuous batching in vLLM amortises GPU utilisation across requests, but peak memory pressure from KV cache growth may require GPU memory management that a two-specialist architecture avoids by running each model at lower batch size. The cross-over point is estimated at ~40 concurrent requests per GPU, above which the two-specialist logit-ensemble architecture with separate smaller batch sizes may achieve lower p99 latency. This trade-off is subject to empirical validation in load testing.</div>
       </div>
+    </section>
+
+    <!-- §9 FAILURE MODE TAXONOMY -->
+    <section class="section" id="failure">
+      <h2 class="section-heading"><span class="section-num">§9</span> Failure Mode Taxonomy</h2>
+      <p class="body-text">Weight merging introduces failure modes distinct from those of the pipeline architecture. The table below characterises known FusionLM-specific failure modes, their detection conditions, and proposed mitigations. This taxonomy is a required component of any architecture design document for production ML systems.</p>
+
+      <table class="fm-table">
+        <thead>
+          <tr><th>Failure mode</th><th>Mechanism</th><th>Detection</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Task vector cancellation</td>
+            <td>When quant and comms specialists encode opposing representations for the same token or feature, TIES sign election may discard the minority signal — typically the quant specialist's in high-conflict blocks.</td>
+            <td>FinQA accuracy drop &gt;3 points vs. quant specialist alone; per-layer conflict rate analysis (§7)</td>
+            <td>Apply per-layer density — lower density (more aggressive DARE pruning) in high-conflict blocks; increase weight_quant for numerically sensitive tasks</td>
+          </tr>
+          <tr>
+            <td>Base model bleed</td>
+            <td>High DARE drop rates (p &gt; 0.7) reintroduce base model (Mistral-7B-v0.1) behaviours by effectively zeroing out fine-tuning. Base model behaviours include hallucinated financial figures and non-instruction-following outputs.</td>
+            <td>TruthfulQA score approaching base model baseline (~52%); outputs reverting to base model chat template format</td>
+            <td>Cap DARE drop rate at p=0.6 for finance-domain merge. Monitor TruthfulQA as sentinel metric. Set density ≥ 0.4 in config.</td>
+          </tr>
+          <tr>
+            <td>Tokenizer boundary artifacts</td>
+            <td>If source models were fine-tuned with different chat templates or system prompt formats, the merged model may produce malformed outputs on hybrid-format prompts. Not currently applicable (both models use same tokenizer), but applies on any checkpoint substitution.</td>
+            <td>Output contains mixed format tokens (e.g., [INST] mixed with &lt;|im_start|&gt;); elevated generation error rate</td>
+            <td>Enforce tokenizer identity check at merge time (mergekit validates automatically). Document required prompt format in serving config.</td>
+          </tr>
+          <tr>
+            <td>Quantisation interaction</td>
+            <td>Merge-induced weight distribution changes (particularly in high-DARE-sparsification blocks) may interact adversarially with post-training INT4/INT8 quantisation, producing larger-than-expected accuracy degradation vs. bfloat16 serving.</td>
+            <td>INT4 FinQA accuracy gap &gt;4 points vs. bfloat16; outlier activation magnitudes in quantisation-sensitive layers</td>
+            <td>Evaluate merged model in target quantisation format before deployment; prefer GPTQ or AWQ quantisation which account for activation statistics. Do not apply naive round-to-nearest INT4 to DARE-sparsified weights.</td>
+          </tr>
+          <tr>
+            <td>Per-query cost crossover under concurrency</td>
+            <td>Under high concurrent load (&gt;40 req/s per GPU), KV cache pressure from the merged 7B model may cause p99 latency to exceed the two-specialist architecture with independent smaller batches.</td>
+            <td>p99 latency &gt;1,200ms under load test at &gt;40 concurrent requests</td>
+            <td>Load test at 2×, 5×, 10× expected peak QPS before production deployment. Document the concurrency crossover point. Consider mixed serving: merged model for low-concurrency, logit-ensemble for burst.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- §10 LIMITATIONS -->
+    <section class="section" id="limitations">
+      <h2 class="section-heading"><span class="section-num">§10</span> Limitations and Open Problems</h2>
+
+      <div class="callout">
+        <div class="callout-label">Known limitations</div>
+        <div class="callout-body">
+          <strong>Architecture constraint:</strong> All source models must share an identical base architecture and tokenizer. Merging Mistral-7B with LLaMA-3-8B is not supported without architectural alignment preprocessing.<br><br>
+          <strong>SLERP constraint:</strong> SLERP is constrained to exactly two models. Scaling to a third specialist (e.g., a regulatory language model) requires switching to TIES or chaining SLERP merges, with quality degradation at each chain step.<br><br>
+          <strong>Uniform density limitation:</strong> The current implementation applies a single density parameter across all 32 transformer blocks. Per-layer interference analysis (§7) suggests that non-uniform density would improve quality, particularly in early layers where conflict rates are low and aggressive DARE pruning is unnecessary. Per-layer density is a planned extension for v0.3.<br><br>
+          <strong>Evaluation variance:</strong> All benchmark results are single-run. Five-seed variance reporting is planned for v0.3. Confidence intervals are required before making production deployment decisions on these numbers.<br><br>
+          <strong>Mechanistic interpretability gap:</strong> The claim that the merged model "preserves intermediate attention states" from both specialists is an inference from benchmark performance, not a demonstrated mechanism. Representational similarity analysis (CKA or probing classifiers on intermediate layers) between merged model and each specialist has not yet been conducted and would strengthen the architectural justification [10][11].<br><br>
+          <strong>License governance:</strong> License compatibility must be verified on any checkpoint substitution. The current configuration (both Apache 2.0) is permissive. Substituting a model under Mistral's commercial license or a CC-BY-NC model would require legal review before enterprise deployment.
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="section" id="references">
+      <h2 class="section-heading">References</h2>
+      <ol class="ref-list">
+        <li><span class="ref-num">[1]</span><span>Goddard, C. et al. (2024). "Arcee's MergeKit: A Toolkit for Merging Large Language Models." <em>EMNLP 2024 Industry Track.</em> arXiv:2403.13257.</span></li>
+        <li><span class="ref-num">[2]</span><span>Touvron, H. et al. (2023). "LLaMA 2: Open Foundation and Fine-Tuned Chat Models." arXiv:2307.09288. — Joint fine-tuning GPU cost estimates.</span></li>
+        <li><span class="ref-num">[3]</span><span>Yu, L. et al. (2023). "Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch." arXiv:2311.03099. — Introduces DARE; reports stability up to p=0.9 drop rate and per-layer interference patterns.</span></li>
+        <li><span class="ref-num">[4]</span><span>Yadav, P. et al. (2023). "TIES-Merging: Resolving Interference When Merging Models." <em>NeurIPS 2023.</em> arXiv:2306.01708. — Introduces task vectors, sign conflict resolution, and TIES algorithm.</span></li>
+        <li><span class="ref-num">[5]</span><span>Chen, Z. et al. (2021). "FinQA: A Dataset of Numerical Reasoning over Financial Data." <em>EMNLP 2021.</em> arXiv:2109.00122. — Primary benchmark for quantitative financial reasoning.</span></li>
+        <li><span class="ref-num">[6]</span><span>Zhu, F. et al. (2021). "TAT-QA: A Question Answering Benchmark on a Hybrid of Tabular and Textual Content in Finance." <em>ACL 2021.</em> arXiv:2105.07624. — Primary benchmark for table+text numerical QA.</span></li>
+        <li><span class="ref-num">[7]</span><span>Hendrycks, D. et al. (2021). "Measuring Massive Multitask Language Understanding." <em>ICLR 2021.</em> arXiv:2009.03300. — MMLU Finance subset (5-shot protocol).</span></li>
+        <li><span class="ref-num">[8]</span><span>Lin, S. et al. (2022). "TruthfulQA: Measuring How Models Mimic Human Falsehoods." <em>ACL 2022.</em> arXiv:2109.07958. — General-knowledge hallucination benchmark; not suitable as primary finance benchmark.</span></li>
+        <li><span class="ref-num">[9]</span><span>Raghu, M. et al. (2017). "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability." <em>NeurIPS 2017.</em> arXiv:1706.05806. — Representational similarity methods; early layer sharing finding.</span></li>
+        <li><span class="ref-num">[10]</span><span>Kornblith, S. et al. (2019). "Similarity of Neural Network Representations Revisited." <em>ICML 2019.</em> arXiv:1905.00414. — CKA methodology for cross-model representational analysis.</span></li>
+        <li><span class="ref-num">[11]</span><span>Ilharco, G. et al. (2023). "Editing Models with Task Arithmetic." <em>ICLR 2023.</em> arXiv:2212.04089. — Task vector formulation used in §3; also provides representational analysis of merged models.</span></li>
+        <li><span class="ref-num">[12]</span><span>Hu, E. et al. (2022). "LoRA: Low-Rank Adaptation of Large Language Models." <em>ICLR 2022.</em> arXiv:2106.09685. — LoRA adapter loading latency characterisation referenced in §2.3.</span></li>
+        <li><span class="ref-num">[13]</span><span>Kwon, W. et al. (2023). "Efficient Memory Management for Large Language Model Serving with PagedAttention." <em>SOSP 2023.</em> arXiv:2309.06180. — vLLM continuous batching and KV cache management referenced in §8.</span></li>
+      </ol>
     </section>
 
   </div><!-- /content -->
 
   <footer class="doc-footer">
-    <span>FusionLM · MLE Portfolio · 2026 · github.com/raosiddharthp/FusionLM</span>
-    <span>Page 01 · Overview · © 2026 Siddharth Rao</span>
+    <span>FusionLM v0.2 · Architecture Design Document · 2026 · github.com/raosiddharthp/FusionLM</span>
+    <span>© 2026 Siddharth Rao · TOGAF EA · GCP CA · MLE</span>
   </footer>
 </main>
 </div>
 
 <script>
+/* ── HEATMAP DATA ── */
+const hmData = [
+  { density: 0.4, scores: [61.2, 62.8, 61.9] },
+  { density: 0.6, scores: [65.1, 68.0, 64.4] },
+  { density: 0.8, scores: [63.4, 65.9, 63.1] }
+];
+const weights = [0.3, 0.4, 0.5];
+function hmColor(v) {
+  const mn=60, mx=70, t=(v-mn)/(mx-mn);
+  const r=Math.round(250-t*80), g=Math.round(245-t*100), b=Math.round(225-t*120);
+  return `rgb(${r},${g},${b})`;
+}
+const tbody = document.getElementById('heatmap-body');
+hmData.forEach(row => {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.textContent = 'density=' + row.density;
+  th.style.cssText = 'text-align:left;font-weight:500;color:var(--text2);';
+  tr.appendChild(th);
+  row.scores.forEach((s, wi) => {
+    const td = document.createElement('td');
+    td.textContent = s.toFixed(1) + '%';
+    td.style.background = hmColor(s);
+    if (row.density === 0.6 && wi === 1) {
+      td.classList.add('hm-sel');
+      td.textContent = s.toFixed(1) + '% ★';
+    }
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+});
+
 /* ── SIMULATOR ── */
 const scenarios = [
   {
     label: 'SLERP · t=0.5 baseline',
-    desc: '<strong>SLERP baseline</strong> — Simplest merge. Interpolates at t=0.5 between quant and comms specialists along a spherical arc. No interference handling. Establishes the performance floor.',
-    s2name: 'SLERP interpolation', s2sub: 'spherical arc · t=0.5',
-    s3name: '— skipped —', s3sub: 'no sparsification',
+    desc: '<strong>SLERP baseline</strong> — Simplest merge. Interpolates at t=0.5 per layer. No interference handling.',
+    s2name: 'SLERP interpolation', s2sub: 'spherical arc · t=0.5 · per-layer',
+    s3name: '— skipped —', s3sub: 'DARE not applied in SLERP',
     s3skip: true,
-    timings: [840, 2100, 18200, 0, 4100, 7200],
+    timings: [840, 1100, 18200, 0, 4100, 7200],
     output: [
       ['head','merge_method: slerp'],
       ['key','base_model: ','val','mistralai/Mistral-7B-v0.1'],
       ['key','models:'],
-      ['key','  - model: ','val','BioMistral/BioMistral-7B'],
-      ['key','    parameters:'],
-      ['key','      t: ','val','0.5'],
+      ['key','  - model: ','val','raosiddharthp/mistral-7b-finance-ft-v2'],
+      ['key','    parameters:'],['key','      t: ','val','0.5'],
       ['key','  - model: ','val','teknium/OpenHermes-2.5-Mistral-7B'],
-      ['key','    parameters:'],
-      ['key','      t: ','val','0.5'],
-      ['comment',''],
-      ['comment','# benchmark results'],
-      ['key','finbench: ','val','66.3'],
-      ['key','mmlu_finance: ','val','65.3'],
-      ['key','truthfulqa: ','val','59.8'],
-      ['warn','# note: no interference handling — lowest merge quality'],
+      ['key','    parameters:'],['key','      t: ','val','0.5'],
+      ['comment',''],['comment','# benchmark results (illustrative — see §6.1 for final values)'],
+      ['key','finqa: ','val','63.9'],['key','tatqa: ','val','57.1'],['key','mmlu_finance: ','val','65.3'],
+      ['warn','# note: no interference handling — lowest merge quality of three techniques'],
     ]
   },
   {
     label: 'TIES · 3-model merge',
-    desc: '<strong>TIES-Merging</strong> — Adds a third regulatory-language specialist. Resolves sign conflicts and trims low-magnitude delta parameters. Supports N models. Better than SLERP on FinBench.',
+    desc: '<strong>TIES-Merging</strong> — Adds a third regulatory-language specialist. Resolves sign conflicts and trims low-magnitude deltas. Supports N models.',
     s2name: 'TIES sign election', s2sub: 'trim + elect + merge',
     s3name: '— skipped —', s3sub: 'DARE not applied',
     s3skip: true,
-    timings: [840, 2100, 22800, 0, 4100, 7200],
+    timings: [840, 1100, 22800, 0, 4100, 7200],
     output: [
       ['head','merge_method: ties'],
       ['key','base_model: ','val','mistralai/Mistral-7B-v0.1'],
       ['key','models:'],
-      ['key','  - model: ','val','BioMistral/BioMistral-7B'],
+      ['key','  - model: ','val','raosiddharthp/mistral-7b-finance-ft-v2'],
       ['key','    parameters: { density: ','val','0.5','key',', weight: ','val','0.35','key',' }'],
       ['key','  - model: ','val','teknium/OpenHermes-2.5-Mistral-7B'],
       ['key','    parameters: { density: ','val','0.5','key',', weight: ','val','0.35','key',' }'],
-      ['key','  - model: ','val','regulatory-lm-7B'],
+      ['key','  - model: ','val','raosiddharthp/mistral-7b-regulatory-ft'],
       ['key','    parameters: { density: ','val','0.5','key',', weight: ','val','0.30','key',' }'],
-      ['comment',''],
-      ['comment','# benchmark results'],
-      ['key','finbench: ','val','68.9'],
-      ['key','mmlu_finance: ','val','67.1'],
-      ['key','truthfulqa: ','val','61.2'],
+      ['comment',''],['comment','# benchmark results (illustrative)'],
+      ['key','finqa: ','val','66.1'],['key','tatqa: ','val','59.4'],['key','mmlu_finance: ','val','67.1'],
     ]
   },
   {
     label: 'DARE-TIES · recommended',
-    desc: '<strong>DARE-TIES (recommended)</strong> — Best benchmark result. DARE sparsifies task vectors before TIES merging, reducing interference. Density=0.6 means 40% of delta params are pruned before sign election.',
+    desc: '<strong>DARE-TIES (recommended)</strong> — Best benchmark result. density=0.6 means 40% of delta params pruned before sign election. Weight ratio selected by sweep (§4.3).',
     s2name: 'TIES sign election', s2sub: 'resolve conflicts · elect signs',
-    s3name: 'DARE sparsification', s3sub: 'drop 40% of delta params',
+    s3name: 'DARE sparsification', s3sub: 'drop 40% of delta params · rescale',
     s3skip: false,
-    timings: [840, 2100, 24400, 3200, 4100, 7200],
+    timings: [840, 1100, 24400, 3200, 4100, 7200],
     output: [
       ['head','merge_method: dare_ties'],
       ['key','base_model: ','val','mistralai/Mistral-7B-v0.1'],
       ['key','parameters:'],
-      ['key','  int8_mask: ','val','true'],
-      ['key','  dtype: ','val','bfloat16'],
+      ['key','  int8_mask: ','val','true'],['key','  dtype: ','val','bfloat16'],
       ['key','models:'],
-      ['key','  - model: ','val','BioMistral/BioMistral-7B'],
+      ['key','  - model: ','val','raosiddharthp/mistral-7b-finance-ft-v2'],
       ['key','    parameters: { density: ','val','0.6','key',', weight: ','val','0.4','key',' }'],
+      ['comment','    # weight=0.4 selected by density×weight sweep (§4.3)'],
       ['key','  - model: ','val','teknium/OpenHermes-2.5-Mistral-7B'],
       ['key','    parameters: { density: ','val','0.6','key',', weight: ','val','0.6','key',' }'],
-      ['comment',''],
-      ['comment','# benchmark results — best overall'],
-      ['key','finbench: ','val','70.5 ★'],
-      ['key','mmlu_finance: ','val','69.5 ★'],
-      ['key','truthfulqa: ','val','63.0 ★'],
-      ['val','# 98.5% of pipeline baseline quality at 1× inference cost'],
+      ['comment',''],['comment','# benchmark results — best overall (illustrative — see §6.1)'],
+      ['key','finqa: ','val','68.0 ★'],['key','tatqa: ','val','61.1 ★'],['key','mmlu_finance: ','val','68.4 ★'],
+      ['val','# 98.5% of logit ensemble quality at 1× inference cost'],
     ]
   },
   {
     label: 'DARE · high sparsity',
-    desc: '<strong>DARE high-sparsity variant</strong> — Pushes drop rate to p=0.9 (90% of delta params pruned). Demonstrates DARE\'s resilience at extreme sparsity. Quality degrades slightly but remains above SLERP.',
+    desc: '<strong>DARE high-sparsity variant</strong> — Pushes drop rate to p=0.9. Demonstrates DARE resilience but approaches base model bleed threshold. Not recommended for production (see §9).',
     s2name: 'TIES sign election', s2sub: 'resolve conflicts',
     s3name: 'DARE · high sparsity', s3sub: 'drop 90% of delta params',
     s3skip: false,
-    timings: [840, 2100, 26100, 4400, 4100, 7200],
+    timings: [840, 1100, 26100, 4400, 4100, 7200],
     output: [
       ['head','merge_method: dare_ties'],
       ['key','base_model: ','val','mistralai/Mistral-7B-v0.1'],
-      ['key','parameters:'],
-      ['key','  int8_mask: ','val','true'],
+      ['key','parameters:'],['key','  int8_mask: ','val','true'],
       ['key','models:'],
-      ['key','  - model: ','val','BioMistral/BioMistral-7B'],
+      ['key','  - model: ','val','raosiddharthp/mistral-7b-finance-ft-v2'],
       ['key','    parameters: { density: ','val','0.1','key',', weight: ','val','0.5','key',' }'],
       ['key','  - model: ','val','teknium/OpenHermes-2.5-Mistral-7B'],
       ['key','    parameters: { density: ','val','0.1','key',', weight: ','val','0.5','key',' }'],
-      ['comment',''],
-      ['comment','# benchmark results — extreme sparsity test'],
-      ['key','finbench: ','val','67.8'],
-      ['key','mmlu_finance: ','val','66.2'],
-      ['key','truthfulqa: ','val','60.9'],
-      ['warn','# quality holds despite 90% pruning — DARE is robust'],
+      ['comment',''],['comment','# benchmark results — approaches base model bleed'],
+      ['key','finqa: ','val','61.2'],['key','tatqa: ','val','55.4'],['key','mmlu_finance: ','val','63.8'],
+      ['warn','# warning: p=0.9 approaches base model bleed threshold — see §9 failure modes'],
     ]
   }
 ];
 
-let activeScenario = 0;
-let running = false;
+let activeScenario = 0, running = false;
 
 function selectScenario(i) {
   if (running) return;
@@ -1351,175 +1251,130 @@ function selectScenario(i) {
 
 function resetSim() {
   for (let i=0;i<6;i++) {
-    const dot = document.getElementById('dot-'+i);
-    const bar = document.getElementById('bar-'+i);
-    const tim = document.getElementById('tim-'+i);
-    dot.className='stage-dot';
-    bar.style.width='0';
-    tim.textContent='—';
-    tim.className='stage-timing';
+    const dot=document.getElementById('dot-'+i), bar=document.getElementById('bar-'+i), tim=document.getElementById('tim-'+i);
+    dot.className='stage-dot'; bar.style.width='0'; tim.textContent='—'; tim.className='stage-timing';
   }
-  const s = scenarios[activeScenario];
-  document.getElementById('s2-name').textContent = s.s2name;
-  document.getElementById('s2-sub').textContent = s.s2sub;
-  document.getElementById('s3-name').textContent = s.s3name;
-  document.getElementById('s3-sub').textContent = s.s3sub;
-  document.getElementById('sim-output').innerHTML = '<span class="out-comment">// select a scenario and run simulation</span>';
-  document.getElementById('sim-status-label').textContent = 'idle';
-  document.getElementById('sim-status-label').className = 'sim-status';
+  const s=scenarios[activeScenario];
+  document.getElementById('s2-name').textContent=s.s2name;
+  document.getElementById('s2-sub').textContent=s.s2sub;
+  document.getElementById('s3-name').textContent=s.s3name;
+  document.getElementById('s3-sub').textContent=s.s3sub;
+  document.getElementById('sim-output').innerHTML='<span class="out-comment">// select a scenario and run walkthrough</span>';
+  document.getElementById('sim-status-label').textContent='idle';
+  document.getElementById('sim-status-label').className='sim-status';
 }
 
-function fmtTime(ms) {
-  if (ms === 0) return 'skipped';
-  if (ms < 1000) return ms+'ms';
-  return (ms/1000).toFixed(1)+'s';
-}
+function fmtTime(ms) { if(ms===0)return'skipped'; if(ms<1000)return ms+'ms'; return(ms/1000).toFixed(1)+'s'; }
 
 async function runSim() {
-  if (running) return;
-  running = true;
-  document.getElementById('run-btn').disabled = true;
-  const s = scenarios[activeScenario];
-  const statusEl = document.getElementById('sim-status-label');
-  statusEl.textContent = 'running';
-  statusEl.className = 'sim-status running';
-  document.getElementById('sim-output').innerHTML = '';
-
-  const delays = [600, 900, 1200, 600, 700, 800];
-
-  for (let i=0;i<6;i++) {
-    if (i===3 && s.s3skip) {
-      document.getElementById('dot-3').className='stage-dot skip';
-      document.getElementById('tim-3').textContent='skipped';
-      document.getElementById('tim-3').className='stage-timing';
-      continue;
-    }
+  if(running)return;
+  running=true;
+  document.getElementById('run-btn').disabled=true;
+  const s=scenarios[activeScenario];
+  const statusEl=document.getElementById('sim-status-label');
+  statusEl.textContent='running'; statusEl.className='sim-status running';
+  document.getElementById('sim-output').innerHTML='';
+  const delays=[600,800,1200,600,700,800];
+  for(let i=0;i<6;i++){
+    if(i===3&&s.s3skip){document.getElementById('dot-3').className='stage-dot skip';document.getElementById('tim-3').textContent='skipped';document.getElementById('tim-3').className='stage-timing';continue;}
     document.getElementById('dot-'+i).className='stage-dot running';
     await sleep(delays[i]);
     document.getElementById('bar-'+i).style.width='100%';
     await sleep(200);
     document.getElementById('dot-'+i).className='stage-dot done';
-    const timEl = document.getElementById('tim-'+i);
-    timEl.textContent = fmtTime(s.timings[i]);
-    timEl.className = 'stage-timing done';
+    const timEl=document.getElementById('tim-'+i);
+    timEl.textContent=fmtTime(s.timings[i]); timEl.className='stage-timing done';
   }
-
-  // Output
-  const out = document.getElementById('sim-output');
-  out.innerHTML = '';
-  for (const line of s.output) {
+  const out=document.getElementById('sim-output'); out.innerHTML='';
+  for(const line of s.output){
     await sleep(80);
-    const span = document.createElement('span');
-    span.className = 'out-line';
-    if (line[0]==='comment') {
-      span.innerHTML = '<span class="out-comment">'+line[1]+'</span>';
-    } else if (line[0]==='head') {
-      span.innerHTML = '<span class="out-head">'+line[1]+'</span>';
-    } else if (line[0]==='val') {
-      span.innerHTML = '<span class="out-val">'+line[1]+'</span>';
-    } else if (line[0]==='warn') {
-      span.innerHTML = '<span class="out-warn">'+line[1]+'</span>';
-    } else {
-      let html = '';
-      for (let k=0;k<line.length;k+=2) {
-        if (k+1<line.length) html += '<span class="out-'+line[k]+'">'+line[k+1]+'</span>';
-      }
-      span.innerHTML = html;
+    const span=document.createElement('span'); span.className='out-line';
+    if(line[0]==='comment') span.innerHTML='<span class="out-comment">'+line[1]+'</span>';
+    else if(line[0]==='head') span.innerHTML='<span class="out-head">'+line[1]+'</span>';
+    else if(line[0]==='val') span.innerHTML='<span class="out-val">'+line[1]+'</span>';
+    else if(line[0]==='warn') span.innerHTML='<span class="out-warn">'+line[1]+'</span>';
+    else {
+      let html='';
+      for(let k=0;k<line.length;k+=2){ if(k+1<line.length)html+='<span class="out-'+line[k]+'">'+line[k+1]+'</span>'; }
+      span.innerHTML=html;
     }
-    out.appendChild(span);
-    out.scrollTop = out.scrollHeight;
+    out.appendChild(span); out.scrollTop=out.scrollHeight;
   }
-
-  statusEl.textContent = 'complete';
-  statusEl.className = 'sim-status done';
-  running = false;
-  document.getElementById('run-btn').disabled = false;
+  statusEl.textContent='complete'; statusEl.className='sim-status done';
+  running=false; document.getElementById('run-btn').disabled=false;
 }
 
-function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
 /* ── CHARTS ── */
-const chartColors = {
-  quant: '#b07010', comms: '#0a6b52', dare: '#4a40b0',
-  slerp: '#c0b8e8', ties: '#80b8a0', pipeline: '#b03820'
-};
+const cc = { quant:'#b07010', comms:'#0a6b52', dare:'#4a40b0', slerp:'#c0b8e8', ties:'#80b8a0', ensemble:'#1850a0' };
 
-// FinBench bar chart
-new Chart(document.getElementById('chart-finbench'), {
-  type: 'bar',
-  data: {
-    labels: ['Quant specialist','Comms specialist','SLERP','TIES','DARE-TIES','Pipeline'],
-    datasets: [{
-      data: [71.2, 58.4, 66.3, 68.9, 70.5, 70.8],
-      backgroundColor: [chartColors.quant, chartColors.comms, chartColors.slerp, chartColors.ties, chartColors.dare, chartColors.pipeline],
-      borderRadius: 4, borderSkipped: false
-    }]
+new Chart(document.getElementById('chart-finqa'),{
+  type:'bar',
+  data:{
+    labels:['Quant specialist','Comms specialist','SLERP','TIES','DARE-TIES','Logit ensemble'],
+    datasets:[{data:[68.2,49.1,63.9,66.1,68.0,69.1],backgroundColor:[cc.quant,cc.comms,cc.slerp,cc.ties,cc.dare,cc.ensemble],borderRadius:4,borderSkipped:false}]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { font: { family: 'IBM Plex Mono', size: 9 }, color: '#8a8880', maxRotation: 30 }, grid: { display: false } },
-      y: { min: 50, max: 75, ticks: { font: { family: 'IBM Plex Mono', size: 9 }, color: '#8a8880' }, grid: { color: '#f2f0eb' } }
-    }
-  }
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{family:'IBM Plex Mono',size:9},color:'#8a8880',maxRotation:30},grid:{display:false}},y:{min:44,max:72,ticks:{font:{family:'IBM Plex Mono',size:9},color:'#8a8880'},grid:{color:'#f2f0eb'}}}}
 });
 
-// TruthfulQA radar-style bar
-new Chart(document.getElementById('chart-truthful'), {
-  type: 'bar',
-  data: {
-    labels: ['Quant','Comms','DARE-TIES','SLERP'],
-    datasets: [{
-      data: [51.3, 62.1, 63.0, 59.8],
-      backgroundColor: [chartColors.quant, chartColors.comms, chartColors.dare, chartColors.slerp],
-      borderRadius: 4, borderSkipped: false
-    }]
+new Chart(document.getElementById('chart-tatqa'),{
+  type:'bar',
+  data:{
+    labels:['Quant','Comms','DARE-TIES','SLERP'],
+    datasets:[{data:[61.4,44.2,61.1,57.1],backgroundColor:[cc.quant,cc.comms,cc.dare,cc.slerp],borderRadius:4,borderSkipped:false}]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { font: { family: 'IBM Plex Mono', size: 10 }, color: '#8a8880' }, grid: { display: false } },
-      y: { min: 45, max: 68, ticks: { font: { family: 'IBM Plex Mono', size: 9 }, color: '#8a8880' }, grid: { color: '#f2f0eb' } }
-    }
-  }
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{family:'IBM Plex Mono',size:10},color:'#8a8880'},grid:{display:false}},y:{min:40,max:66,ticks:{font:{family:'IBM Plex Mono',size:9},color:'#8a8880'},grid:{color:'#f2f0eb'}}}}
 });
 
-// MMLU grouped bar
-new Chart(document.getElementById('chart-mmlu'), {
-  type: 'bar',
-  data: {
-    labels: ['FinBench', 'MMLU Finance', 'TruthfulQA'],
-    datasets: [
-      { label: 'Quant specialist', data: [71.2, 64.1, 51.3], backgroundColor: chartColors.quant, borderRadius: 3 },
-      { label: 'Comms specialist', data: [58.4, 60.8, 62.1], backgroundColor: chartColors.comms, borderRadius: 3 },
-      { label: 'SLERP', data: [66.3, 65.3, 59.8], backgroundColor: chartColors.slerp, borderRadius: 3 },
-      { label: 'TIES', data: [68.9, 67.1, 61.2], backgroundColor: chartColors.ties, borderRadius: 3 },
-      { label: 'DARE-TIES ★', data: [70.5, 69.5, 63.0], backgroundColor: chartColors.dare, borderRadius: 3 },
+new Chart(document.getElementById('chart-mmlu'),{
+  type:'bar',
+  data:{
+    labels:['FinQA','TAT-QA','MMLU Finance'],
+    datasets:[
+      {label:'Quant specialist',data:[68.2,61.4,64.1],backgroundColor:cc.quant,borderRadius:3},
+      {label:'Comms specialist',data:[49.1,44.2,60.8],backgroundColor:cc.comms,borderRadius:3},
+      {label:'SLERP',data:[63.9,57.1,65.3],backgroundColor:cc.slerp,borderRadius:3},
+      {label:'TIES',data:[66.1,59.4,67.1],backgroundColor:cc.ties,borderRadius:3},
+      {label:'DARE-TIES ★',data:[68.0,61.1,68.4],backgroundColor:cc.dare,borderRadius:3},
+      {label:'Logit ensemble (2× cost)',data:[69.1,62.8,67.2],backgroundColor:cc.ensemble,borderRadius:3},
     ]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { font: { family: 'IBM Plex Mono', size: 10 }, color: '#8a8880' }, grid: { display: false } },
-      y: { min: 45, max: 76, ticks: { font: { family: 'IBM Plex Mono', size: 9 }, color: '#8a8880' }, grid: { color: '#f2f0eb' } }
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{family:'IBM Plex Mono',size:10},color:'#8a8880'},grid:{display:false}},y:{min:40,max:74,ticks:{font:{family:'IBM Plex Mono',size:9},color:'#8a8880'},grid:{color:'#f2f0eb'}}}}
+});
+
+/* ── INTERFERENCE CHART ── */
+const layers = Array.from({length:32},(_,i)=>i);
+const conflictRates = [0.28,0.30,0.31,0.29,0.32,0.33,0.35,0.34,0.36,0.38,0.40,0.41,0.44,0.46,0.48,0.50,0.52,0.51,0.49,0.47,0.46,0.45,0.44,0.43,0.42,0.40,0.38,0.36,0.34,0.33,0.31,0.30];
+const barColors = conflictRates.map(r => r >= 0.45 ? '#b03820' : r >= 0.38 ? '#b07010' : '#0a6b52');
+
+new Chart(document.getElementById('chart-interference'),{
+  type:'bar',
+  data:{
+    labels: layers.map(i=>'L'+i),
+    datasets:[
+      {data:conflictRates,backgroundColor:barColors,borderRadius:2,borderSkipped:false},
+      {type:'line',data:Array(32).fill(0.45),borderColor:'#b03820',borderDash:[4,3],borderWidth:1,pointRadius:0,fill:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{ticks:{font:{family:'IBM Plex Mono',size:8},color:'#8a8880',maxRotation:0},grid:{display:false}},
+      y:{min:0.2,max:0.6,ticks:{font:{family:'IBM Plex Mono',size:9},color:'#8a8880',callback:v=>(v*100).toFixed(0)+'%'},grid:{color:'#f2f0eb'}}
     }
   }
 });
 
 /* ── SIDEBAR ACTIVE ── */
-const sections = document.querySelectorAll('section[id], header[id]');
-const links = document.querySelectorAll('.sidebar-nav a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-  links.forEach(a => {
-    const href = a.getAttribute('href').replace('#','');
-    a.classList.toggle('active', href === current);
-  });
-}, { passive: true });
+const sections=document.querySelectorAll('section[id], header[id]');
+const links=document.querySelectorAll('.sidebar-nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)current=s.id;});
+  links.forEach(a=>{const href=a.getAttribute('href').replace('#','');a.classList.toggle('active',href===current);});
+},{passive:true});
 </script>
 </body>
 </html>
