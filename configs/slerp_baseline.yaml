@@ -1,0 +1,9 @@
+merge_method: slerp
+base_model: mistralai/Mistral-7B-v0.1
+models:
+  - model: AdaptLLM/finance-LLM-instruct
+    parameters:
+      t: 0.5
+  - model: teknium/OpenHermes-2.5-Mistral-7B
+    parameters:
+      t: 0.5
