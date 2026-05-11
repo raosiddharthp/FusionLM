@@ -21,5 +21,6 @@
   ],
   "output_size_gb": 13.6,
   "mergekit_version": "0.1.4",
+  "huggingface_url": "https://huggingface.co/Siddarthrao/fusionlm-dare-ties-7b",
   "status": "success"
 }
