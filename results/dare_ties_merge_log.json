@@ -1,0 +1,25 @@
+{
+  "model": "fusionlm-dare-ties",
+  "method": "DARE-TIES",
+  "timestamp": "2026-05-11",
+  "hardware": "Apple M1 8GB RAM",
+  "merge_time_seconds": 405,
+  "config": {
+    "density": 0.6,
+    "weight_quant": 0.4,
+    "weight_comms": 0.6
+  },
+  "source_models": {
+    "quant_specialist": "bitext/Mistral-7B-Wealth_Management",
+    "comms_specialist": "teknium/OpenHermes-2.5-Mistral-7B",
+    "base_model": "mistralai/Mistral-7B-v0.1"
+  },
+  "output_files": [
+    "model-00001-of-00003.safetensors",
+    "model-00002-of-00003.safetensors",
+    "model-00003-of-00003.safetensors"
+  ],
+  "output_size_gb": 13.6,
+  "mergekit_version": "0.1.4",
+  "status": "success"
+}
