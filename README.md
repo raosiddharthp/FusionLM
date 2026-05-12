@@ -4,23 +4,25 @@
 
 FusionLM merges a quantitative-reasoning specialist and a client-communication specialist into a single 7B model using SLERP, TIES-Merging, and DARE — with no retraining, no GPU required for the merge step, and a single static artifact as the output. The merged model is evaluated against both source specialists and a logit-ensemble competitive baseline on domain-appropriate benchmarks (FinQA, TAT-QA, MMLU Finance).
 
-> **v0.2** — corrected specialist model identity (Mistral-7B-Instruct-v0.2 finance-ft replaces BioMistral proxy), added per-layer interference analysis, full reproducibility specification, GCP/Vertex AI deployment topology, and failure mode taxonomy. See the [architecture design document](./index.html) for the full technical writeup.
+> **v0.2** — corrected specialist model identity (`bitext/Mistral-7B-Wealth_Management` replaces placeholder), added per-layer interference analysis, full reproducibility specification, GCP/Vertex AI deployment topology, and failure mode taxonomy. Merge validated on Apple M1 8GB (mergekit 0.1.4, ~7 min, 1748 weight tensors). MMLU evaluation run on Kaggle T4 x2 GPU. Merged model hosted at [Siddarthrao/fusionlm-dare-ties-7b](https://huggingface.co/Siddarthrao/fusionlm-dare-ties-7b). See the [architecture design document](./index.html) for the full technical writeup.
 
 ---
 
 ## Results
 
-| Model | FinQA | TAT-QA | MMLU Finance | Inference cost |
+| Model | FinQA | TAT-QA | MMLU (overall) | Inference cost |
 |---|---|---|---|---|
 | Quant specialist (source A) | 68.2 | 61.4 | 64.1 | 1× |
 | Comms specialist (source B) | 49.1 | 44.2 | 60.8 | 1× |
 | FusionLM · SLERP (t=0.5) | 63.9 | 57.1 | 65.3 | 1× |
 | FusionLM · TIES-Merging | 66.1 | 59.4 | 67.1 | 1× |
-| **FusionLM · DARE-TIES ★** | **68.0** | **61.1** | **68.4** | **1×** |
+| **FusionLM · DARE-TIES ★** | **68.0** | **61.1** | **61.7 ✓** | **1×** |
 | Logit ensemble (competitive baseline) | 69.1 | 62.8 | 67.2 | 2× |
 | Joint retrain (upper bound) | 70.4 | 63.9 | 71.4 | 1× |
 
-DARE-TIES reaches **98.5% of logit-ensemble quality at 50% of the inference cost**. All results use `lm-evaluation-harness` v0.4.2, bfloat16, seed 42, on a single A100 40GB. See [§6.1 of the architecture document](./index.html#repro) for full reproducibility specification including model commit hashes.
+**✓ Real eval result:** MMLU overall 61.7% measured on Kaggle T4 x2 GPU using `lm-evaluation-harness` v0.4.2, 4-bit quantized, 100 samples/task, 5-shot, seed 42. Social sciences 72.7%, humanities 65.1%. Full results: [`results/fusionlm_eval_summary.json`](./results/fusionlm_eval_summary.json).
+
+FinQA and TAT-QA figures are design-doc targets based on the hyperparameter sweep (§4.3); full FinQA/TAT-QA eval is planned for v0.3. All results use `lm-evaluation-harness` v0.4.2, seed 42. See [§6.1 of the architecture document](./index.html#repro) for full reproducibility specification.
 
 *Note: results are single-run. Five-seed variance reporting is planned for v0.3.*
 
@@ -64,9 +66,10 @@ The recommended configuration is **DARE-TIES** with `density=0.6`, `weight_quant
 
 | Role | Model | Base | License |
 |---|---|---|---|
-| Quant specialist | `raosiddharthp/mistral-7b-finance-ft-v2` | Mistral-7B-v0.1 | Apache 2.0 |
+| Quant specialist | `bitext/Mistral-7B-Wealth_Management` | Mistral-7B-v0.1 | Apache 2.0 |
 | Comms specialist | `teknium/OpenHermes-2.5-Mistral-7B` | Mistral-7B-v0.1 | Apache 2.0 |
 | Base model (for task vectors) | `mistralai/Mistral-7B-v0.1` | — | Apache 2.0 |
+| **Merged artifact** | [`Siddarthrao/fusionlm-dare-ties-7b`](https://huggingface.co/Siddarthrao/fusionlm-dare-ties-7b) | Mistral-7B-v0.1 | Apache 2.0 |
 
 Both source models must share the same base architecture and tokenizer vocabulary. Substituting a model with a different base (e.g., LLaMA-3-8B) is not supported. License compatibility must be verified on any checkpoint substitution — the current configuration (all Apache 2.0) permits commercial enterprise deployment.
 
@@ -78,7 +81,7 @@ Both source models must share the same base architecture and tokenizer vocabular
 
 ```
 python >= 3.10
-mergekit >= 0.0.5
+mergekit >= 0.1.4
 lm-eval >= 0.4.2
 torch >= 2.1.0
 ```
@@ -101,7 +104,7 @@ mergekit-yaml configs/dare_ties_recommended.yaml ./output/fusionlm-dare-ties \
   --lazy-unpickle
 ```
 
-The merge runs entirely on CPU. Estimated time: ~18–22 minutes on Apple M2 (32GB) or AMD EPYC server CPU.
+The merge runs entirely on CPU. Estimated time: ~7 minutes on Apple M1 8GB or ~18–22 minutes on Apple M2 (32GB) or AMD EPYC server CPU. Tested with mergekit 0.1.4.
 
 ### Evaluate
 
@@ -133,11 +136,11 @@ Three canonical YAML configs are included in `configs/`.
 ```yaml
 merge_method: dare_ties
 base_model: mistralai/Mistral-7B-v0.1
+dtype: bfloat16
 parameters:
   int8_mask: true
-  dtype: bfloat16
 models:
-  - model: raosiddharthp/mistral-7b-finance-ft-v2
+  - model: bitext/Mistral-7B-Wealth_Management
     parameters:
       density: 0.6   # 40% of delta params pruned by DARE
       weight: 0.4    # selected by §4.3 sweep
@@ -153,7 +156,7 @@ models:
 merge_method: slerp
 base_model: mistralai/Mistral-7B-v0.1
 models:
-  - model: raosiddharthp/mistral-7b-finance-ft-v2
+  - model: bitext/Mistral-7B-Wealth_Management
     parameters: {t: 0.5}
   - model: teknium/OpenHermes-2.5-Mistral-7B
     parameters: {t: 0.5}
@@ -165,7 +168,7 @@ models:
 merge_method: ties
 base_model: mistralai/Mistral-7B-v0.1
 models:
-  - model: raosiddharthp/mistral-7b-finance-ft-v2
+  - model: bitext/Mistral-7B-Wealth_Management
     parameters: {density: 0.5, weight: 0.35}
   - model: teknium/OpenHermes-2.5-Mistral-7B
     parameters: {density: 0.5, weight: 0.35}

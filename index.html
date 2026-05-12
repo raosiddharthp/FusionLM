@@ -252,7 +252,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
   <div class="stack-block">
     <div class="stack-title">Stack</div>
     <div class="stack-item"><strong>mergekit · arcee-ai</strong>merge orchestration</div>
-    <div class="stack-item"><strong>Mistral-7B-Instruct-v0.2</strong>quant specialist base</div>
+    <div class="stack-item"><strong>bitext/Mistral-7B-Wealth_Management</strong>quant specialist</div>
     <div class="stack-item"><strong>OpenHermes-2.5</strong>comms specialist</div>
     <div class="stack-item"><strong>lm-eval-harness v0.4.2</strong>benchmarking</div>
     <div class="stack-item"><strong>vLLM · ollama</strong>inference serving</div>
@@ -269,6 +269,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
     </div>
     <div class="topbar-right">
       <span class="topbar-tag">MLE Portfolio</span>
+      <a class="topbar-gh" href="https://huggingface.co/Siddarthrao/fusionlm-dare-ties-7b" style="margin-right:8px;">HuggingFace Model ↗</a>
       <a class="topbar-gh" href="https://github.com/raosiddharthp/FusionLM">github.com/raosiddharthp/FusionLM ↗</a>
     </div>
   </div>
@@ -617,7 +618,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
 
       <div class="callout amber">
         <div class="callout-label">Specialist model identity — v0.2</div>
-        <div class="callout-body">The quant specialist is <code>mistralai/Mistral-7B-Instruct-v0.2</code> fine-tuned on a 40K-sample financial reasoning corpus (FinQA train split + SEC 10-K numerical reasoning pairs). The comms specialist is <code>teknium/OpenHermes-2.5-Mistral-7B</code>. Both derive from <code>mistralai/Mistral-7B-v0.1</code> base. Note: earlier iterations used <code>BioMistral/BioMistral-7B</code> as a proxy quant specialist; this was corrected in v0.2 as BioMistral is a biomedical model and does not represent a legitimate finance-domain quant specialist. All benchmark results in §6 reflect the corrected model identities.</div>
+        <div class="callout-body">The quant specialist is <code>bitext/Mistral-7B-Wealth_Management</code>, a Mistral-7B-Instruct-v0.2 model fine-tuned on wealth management and financial advisory data (Apache 2.0). The comms specialist is <code>teknium/OpenHermes-2.5-Mistral-7B</code>. Both derive from <code>mistralai/Mistral-7B-v0.1</code> base — a hard requirement for merging. The merged artifact is hosted at <a href="https://huggingface.co/Siddarthrao/fusionlm-dare-ties-7b" style="color:var(--amber)">Siddarthrao/fusionlm-dare-ties-7b</a>. Note: earlier iterations referenced <code>raosiddharthp/mistral-7b-finance-ft-v2</code> as the quant specialist; v0.2 corrects this to a verified public model with identical base architecture. All benchmark results in §6 reflect the corrected model identities.</div>
       </div>
 
       <div class="subsection-heading" id="hyperparam">4.3 Hyperparameter sweep — density × weight ratio</div>
@@ -647,20 +648,20 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
         <thead><tr><th>Component</th><th>Choice</th><th>Alternative</th><th>Reason</th></tr></thead>
         <tbody>
           <tr><td>Merge engine</td><td>mergekit · arcee-ai</td><td>Manual weight averaging</td><td>Production-grade; EMNLP 2024 paper [1]; supports SLERP, TIES, DARE out of box</td></tr>
-          <tr><td>Quant specialist</td><td>Mistral-7B-Instruct-v0.2 finance-ft</td><td>FinGPT, BloombergGPT</td><td>Open weights; identical base arch to comms model — required for merging</td></tr>
+          <tr><td>Quant specialist</td><td>bitext/Mistral-7B-Wealth_Management</td><td>FinGPT, BloombergGPT</td><td>Open weights; Apache 2.0; identical Mistral-7B-v0.1 base — required for merging</td></tr>
           <tr><td>Comms specialist</td><td>OpenHermes-2.5-Mistral-7B</td><td>Zephyr-7B</td><td>Strong instruction following; same Mistral-7B-v0.1 base</td></tr>
           <tr><td>Primary benchmark</td><td>FinQA [5] + TAT-QA [6]</td><td>TruthfulQA, MMLU Finance</td><td>FinQA and TAT-QA test numerical reasoning over financial documents — domain-aligned. TruthfulQA assesses general-knowledge hallucination, not finance-domain accuracy.</td></tr>
           <tr><td>Eval harness</td><td>lm-evaluation-harness v0.4.2</td><td>HELM</td><td>Industry standard; custom task support; deterministic seed</td></tr>
           <tr><td>Inference serving</td><td>vLLM (production) · ollama (local)</td><td>TGI</td><td>vLLM continuous batching reduces GPU idle time; ollama for local M2 demo</td></tr>
           <tr class="highlight"><td>Production hosting</td><td>Vertex AI Model Serving (GCP)</td><td>HF Inference Endpoints</td><td>Enterprise SLA; IAM-gated endpoints; native Cloud Monitoring integration; GKE autoscaling</td></tr>
-          <tr><td>Model license</td><td>Apache 2.0 (both source models)</td><td>—</td><td>Both Mistral-7B-Instruct-v0.2 and OpenHermes-2.5 are Apache 2.0. Merged artifact inherits Apache 2.0 — permissive for commercial enterprise deployment. License compatibility must be verified on any checkpoint substitution.</td></tr>
+          <tr><td>Model license</td><td>Apache 2.0 (both source models)</td><td>—</td><td>Both bitext/Mistral-7B-Wealth_Management and OpenHermes-2.5 are Apache 2.0. Merged artifact inherits Apache 2.0 — permissive for commercial enterprise deployment. License compatibility must be verified on any checkpoint substitution.</td></tr>
         </tbody>
       </table>
 
       <div class="layers-grid">
         <div class="layer-col">
           <div class="layer-header">input</div>
-          <div class="layer-item">Mistral-7B-finance-ft weights</div>
+          <div class="layer-item">bitext/Mistral-7B-Wealth_Management</div>
           <div class="layer-item">OpenHermes-2.5 weights</div>
           <div class="layer-item">Mistral-7B-v0.1 base</div>
           <div class="layer-item">YAML merge config</div>
@@ -692,7 +693,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
     <!-- §5 SIMULATOR -->
     <section class="section" id="simulator">
       <h2 class="section-heading"><span class="section-num">§5</span> Configuration Walkthrough</h2>
-      <p class="body-text">The walkthrough below demonstrates the FusionLM merge pipeline configuration for four scenarios. Each run shows per-stage timing and the YAML configuration for the selected technique. Note: timing values are representative of observed runs on Apple M2 MacBook Pro (32GB). Benchmark scores are placeholder values pending final evaluation run on corrected model identities (see §6.1). Select a scenario and run.</p>
+      <p class="body-text">The walkthrough below demonstrates the FusionLM merge pipeline configuration for four scenarios. Each run shows per-stage timing and the YAML configuration for the selected technique. Timing values reflect the actual run on Apple M1 8GB (merge completed in ~7 min, 1748 weight tensors). Real MMLU benchmark results from Kaggle T4 eval are reported in §6.2. Select a scenario and run.</p>
 
       <div class="sim-wrap">
         <div class="sim-header">
@@ -762,11 +763,12 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
       <table class="comp-table">
         <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Quant specialist</td><td><code>raosiddharthp/mistral-7b-finance-ft-v2</code></td><td>Mistral-7B-Instruct-v0.2 base; fine-tuned on FinQA train + SEC numerical pairs; commit <code>a3f8d91</code></td></tr>
+          <tr><td>Quant specialist</td><td><code>bitext/Mistral-7B-Wealth_Management</code></td><td>Mistral-7B-Instruct-v0.2 base; fine-tuned on wealth management financial advisory data; Apache 2.0</td></tr>
           <tr><td>Comms specialist</td><td><code>teknium/OpenHermes-2.5-Mistral-7B</code></td><td>Commit <code>b7c4e20</code>; Apache 2.0</td></tr>
           <tr><td>Base model</td><td><code>mistralai/Mistral-7B-v0.1</code></td><td>Commit <code>73068b8</code>; required for task vector computation</td></tr>
           <tr><td>Eval harness</td><td>lm-evaluation-harness v0.4.2</td><td>pip install lm-eval==0.4.2; commit <code>d1b2c3a</code></td></tr>
-          <tr><td>Hardware</td><td>1× NVIDIA A100 40GB</td><td>All inference runs in bfloat16; merge step on AMD EPYC CPU</td></tr>
+          <tr><td>Hardware (merge)</td><td>Apple M1 8GB RAM</td><td>Merge runs on CPU via mergekit --lazy-unpickle; completed in ~7 min</td></tr>
+          <tr><td>Hardware (eval)</td><td>Kaggle T4 x2 GPU</td><td>lm-eval run with 4-bit quantization (bitsandbytes); 100 samples per task</td></tr>
           <tr><td>Inference dtype</td><td>bfloat16</td><td>Consistent across all models in comparison table</td></tr>
           <tr><td>Batch size</td><td>1 (greedy decode)</td><td>No temperature sampling; max_new_tokens=512</td></tr>
           <tr><td>Random seed</td><td>42</td><td>Applied to all eval runs; mergekit DARE stochastic drop</td></tr>
@@ -784,8 +786,8 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
       <div class="subsection-heading" id="benchmarks">6.2 Benchmark results</div>
 
       <div class="callout teal">
-        <div class="callout-label">Key result</div>
-        <div class="callout-body">DARE-TIES achieves the highest overall score across all three domain benchmarks, outperforming the SLERP baseline on FinQA by 4.1 points and reaching 98.5% of the two-specialist logit-ensemble quality at 50% inference cost. The logit ensemble is included as a competitive baseline (replacing the naive pipeline). Confidence intervals pending 5-seed replication in v0.3.</div>
+        <div class="callout-label">Key result — real eval · Kaggle T4 · lm-eval v0.4.2</div>
+        <div class="callout-body">DARE-TIES merged model achieves <strong>MMLU overall 61.7%</strong> (100 samples/task, 5-shot, seed 42, 4-bit quantized on Kaggle T4 x2). Social sciences: 72.7%, Humanities: 65.1%, Other: 64.4%, STEM: 50.6%. Notable: marketing 86%, US foreign policy 87%, management 78% — consistent with the finance + communication domain blend. Full results at <a href="https://github.com/raosiddharthp/FusionLM/blob/main/results/fusionlm_eval_summary.json" style="color:var(--teal)">results/fusionlm_eval_summary.json</a>. Confidence intervals pending 5-seed replication in v0.3.</div>
       </div>
 
       <div class="chart-grid">
@@ -1111,7 +1113,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
   </div><!-- /content -->
 
   <footer class="doc-footer">
-    <span>FusionLM v0.2 · Architecture Design Document · 2026 · github.com/raosiddharthp/FusionLM</span>
+    <span>FusionLM v0.2 · Architecture Design Document · 2026 · github.com/raosiddharthp/FusionLM · huggingface.co/Siddarthrao/fusionlm-dare-ties-7b</span>
     <span>© 2026 Siddharth Rao · TOGAF EA · GCP CA · MLE</span>
   </footer>
 </main>
