@@ -1,0 +1,22 @@
+{
+  "model": "Siddarthrao/fusionlm-dare-ties-7b",
+  "method": "DARE-TIES",
+  "hardware": "Kaggle T4 x2 GPU",
+  "evaluation": "lm-eval-harness v0.4.2",
+  "quantization": "4-bit (bitsandbytes)",
+  "limit_per_task": 100,
+  "seed": 42,
+  "scores": {
+    "mmlu_overall": 61.7,
+    "mmlu_social_sciences": 72.7,
+    "mmlu_humanities": 65.1,
+    "mmlu_other": 64.4,
+    "mmlu_stem": 50.6
+  },
+  "notable": {
+    "mmlu_marketing": 86.0,
+    "mmlu_high_school_government_and_politics": 93.0,
+    "mmlu_us_foreign_policy": 87.0,
+    "mmlu_management": 78.0
+  }
+}
